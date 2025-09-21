@@ -4,18 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>John Keneth L. Diola - BSIT Graduate & Programming Intern</title>
-    <meta name="description" content="Portfolio of John Keneth L. Diola, BSIT Graduate with Cum Laude honors and Programming Intern">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Portfolio of John Keneth L. Diola, BSIT Graduate and Programming Intern specializing in Python, JavaScript, and web development.">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#169976',
-                        dark: '#0f0f0f',
-                        'dark-secondary': '#1a1a1a',
-                        'dark-tertiary': '#2a2a2a'
+                        teal: '#169976',
+                        dark: '#0A0A0B'
                     },
                     fontFamily: {
                         'inter': ['Inter', 'sans-serif']
@@ -28,260 +26,141 @@
         html {
             scroll-behavior: smooth;
         }
-        
-        /* Scroll animations */
-        .fade-in {
+        .glass-morphism {
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 11, 0.8);
+        }
+        .skill-bar {
+            transition: width 1.5s ease-in-out;
+        }
+        .toast {
+            transform: translateY(-100px);
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .slide-in-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .slide-in-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .slide-in-right {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .slide-in-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        /* Enhanced hover effects */
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .hover-lift:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(22, 153, 118, 0.15);
-        }
-        
-        .hover-glow {
-            transition: box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-        .hover-glow:hover {
-            box-shadow: 0 0 30px rgba(22, 153, 118, 0.3);
-            border-color: #169976;
-        }
-        
-        .hover-scale {
-            transition: transform 0.3s ease;
-        }
-        .hover-scale:hover {
-            transform: scale(1.05);
-        }
-        
-        /* Minimalist button styles */
-        .btn-minimal {
-            position: relative;
-            overflow: hidden;
             transition: all 0.3s ease;
         }
-        .btn-minimal::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: left 0.5s ease;
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
         }
-        .btn-minimal:hover::before {
-            left: 100%;
+        .modal {
+            backdrop-filter: blur(8px);
         }
-        
-        /* Skill bar animations */
-        .skill-bar {
-            width: 0;
-            transition: width 1.5s ease-in-out 0.3s;
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-in-out;
         }
-        .skill-bar.animate {
-            width: var(--target-width);
+        .animate-slide-up {
+            animation: slideUp 0.8s ease-out;
         }
-        
-        /* Mobile menu */
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .mobile-menu.open {
-            transform: translateX(0);
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        /* Floating animation */
-        .float {
-            animation: float 6s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        /* Pulse effect */
-        .pulse-border {
-            animation: pulse-border 2s infinite;
-        }
-        @keyframes pulse-border {
-            0% { box-shadow: 0 0 0 0 rgba(22, 153, 118, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(22, 153, 118, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(22, 153, 118, 0); }
-        }
-        
-        /* Minimalist scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1a1a1a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #169976;
-            border-radius: 3px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #20b486;
+        .progress-bar {
+            width: 0%;
+            transition: width 2s ease-in-out;
         }
     </style>
 </head>
 <body class="bg-dark text-white font-inter">
-    <!-- Header -->
-    <header class="fixed top-0 w-full bg-dark/90 backdrop-blur-md border-b border-dark-tertiary/50 z-50">
-        <nav class="container mx-auto px-6 py-6">
-            <div class="flex items-center justify-between">
-                <div class="text-2xl font-light text-primary tracking-wider">keki</div>
-                
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center space-x-10">
-                    <a href="#about" class="text-sm font-light hover:text-primary transition-all duration-300 relative group">
-                        About
-                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#education" class="text-sm font-light hover:text-primary transition-all duration-300 relative group">
-                        Education
-                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#experience" class="text-sm font-light hover:text-primary transition-all duration-300 relative group">
-                        Experience
-                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#skills" class="text-sm font-light hover:text-primary transition-all duration-300 relative group">
-                        Skills
-                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#projects" class="text-sm font-light hover:text-primary transition-all duration-300 relative group">
-                        Projects
-                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#contact" class="text-sm font-light hover:text-primary transition-all duration-300 relative group">
-                        Contact
-                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="https://drive.google.com/file/d/1RIXHq9LLxvBiOCc5kUqi9WS6UpSHGhxY/view?usp=sharing" 
-                       target="_blank" rel="noopener noreferrer"
-                       class="btn-minimal border border-primary/30 text-primary hover:bg-primary hover:text-white px-6 py-2 rounded-full text-sm font-light transition-all duration-300">
-                        Resume
-                    </a>
-                </div>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast fixed top-4 right-4 bg-teal text-white px-6 py-3 rounded-lg shadow-lg z-50">
+        <span id="toast-message">Resume downloaded successfully!</span>
+    </div>
 
-                <!-- Mobile Menu Button -->
-                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
+    <!-- Progress Bar -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-teal z-50 transition-all duration-300" style="width: 0%"></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full glass-morphism border-b border-gray-800 z-40">
+        <nav class="container mx-auto px-4 lg:px-6 py-4 flex justify-between items-center">
+            <div class="text-xl md:text-2xl font-bold text-teal">keki</div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex space-x-6 xl:space-x-8">
+                <a href="#about" class="hover:text-teal transition-colors">About</a>
+                <a href="#education" class="hover:text-teal transition-colors">Education</a>
+                <a href="#experience" class="hover:text-teal transition-colors">Experience</a>
+                <a href="#skills" class="hover:text-teal transition-colors">Skills</a>
+                <a href="#projects" class="hover:text-teal transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-teal transition-colors">Contact</a>
+            </div>
+
+            <div class="hidden lg:block">
+                <button onclick="downloadResume()" class="bg-teal hover:bg-teal/80 px-3 md:px-4 py-2 rounded-lg transition-colors text-sm md:text-base">
+                    Download Resume
                 </button>
             </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="lg:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </nav>
 
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-dark-secondary border-l border-dark-tertiary md:hidden">
-            <div class="p-6">
-                <button onclick="toggleMobileMenu()" class="float-right text-white mb-8">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-                <div class="clear-both space-y-4">
-                    <a href="#about" onclick="toggleMobileMenu()" class="block hover:text-primary transition-colors">About</a>
-                    <a href="#education" onclick="toggleMobileMenu()" class="block hover:text-primary transition-colors">Education</a>
-                    <a href="#experience" onclick="toggleMobileMenu()" class="block hover:text-primary transition-colors">Experience</a>
-                    <a href="#skills" onclick="toggleMobileMenu()" class="block hover:text-primary transition-colors">Skills</a>
-                    <a href="#projects" onclick="toggleMobileMenu()" class="block hover:text-primary transition-colors">Projects</a>
-                    <a href="#contact" onclick="toggleMobileMenu()" class="block hover:text-primary transition-colors">Contact</a>
-                    <a href="https://drive.google.com/file/d/1RIXHq9LLxvBiOCc5kUqi9WS6UpSHGhxY/view?usp=sharing" 
-                       target="_blank" rel="noopener noreferrer"
-                       class="block bg-primary hover:bg-primary/80 px-4 py-2 rounded-lg transition-colors text-center">
-                        Resume
-                    </a>
-                </div>
+        <div id="mobile-menu" class="hidden lg:hidden bg-dark border-t border-gray-800">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#about" class="block py-2 hover:text-teal transition-colors">About</a>
+                <a href="#education" class="block py-2 hover:text-teal transition-colors">Education</a>
+                <a href="#experience" class="block py-2 hover:text-teal transition-colors">Experience</a>
+                <a href="#skills" class="block py-2 hover:text-teal transition-colors">Skills</a>
+                <a href="#projects" class="block py-2 hover:text-teal transition-colors">Projects</a>
+                <a href="#contact" class="block py-2 hover:text-teal transition-colors">Contact</a>
+                <button onclick="downloadResume()" class="w-full text-left py-2 text-teal">Download Resume</button>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="about" class="pt-32 pb-20 px-6 min-h-screen flex items-center">
-        <div class="container mx-auto">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <!-- Profile Image -->
-                <div class="flex justify-center md:justify-start slide-in-left">
-                    <div class="relative float">
-                        <div class="w-72 h-72 rounded-full border border-primary/20 bg-gradient-to-br from-dark-secondary to-dark-tertiary flex items-center justify-center pulse-border hover-glow">
-                            <svg class="w-24 h-24 text-primary/80" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                            </svg>
+    <section id="about" class="min-h-screen flex items-center pt-20">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                <!-- Profile Picture - Shows first on tablet, second on desktop -->
+                <div class="flex justify-center animate-slide-up order-1 lg:order-2">
+                    <div class="relative">
+                        <div class="w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full border-4 border-teal overflow-hidden">
+                            <img src="GradPic.jpg" alt="John Keneth L. Diola - BSIT Graduate" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="w-full h-full bg-teal/20 flex items-center justify-center" style="display: none;">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-teal mb-2">JKD</div>
+                                    <div class="text-sm text-teal">BSIT Graduate</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Content -->
-                <div class="text-center md:text-left slide-in-right">
-                    <h1 class="text-5xl md:text-6xl font-light mb-6 leading-tight">
-                        John Keneth L. <span class="text-primary font-normal">Diola</span>
+                <!-- Text Content - Shows second on tablet, first on desktop -->
+                <div class="text-center lg:text-left animate-fade-in order-2 lg:order-1">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4">
+                        John Keneth L. <span class="text-teal">Diola</span>
                     </h1>
-                    <h2 class="text-xl md:text-2xl text-gray-400 mb-8 font-light">BSIT Graduate & Programming Intern</h2>
-                    
-                    <p class="text-gray-400 mb-10 leading-relaxed font-light text-lg max-w-lg">
-                        Focused and dedicated BSIT graduate with Cum Laude honors. Passionate about creating 
-                        elegant solutions through clean code and continuous learning.
+                    <h2 class="text-lg md:text-xl lg:text-2xl text-gray-300 mb-6">BSIT Graduate & Programming Intern</h2>
+                    <p class="text-gray-400 mb-6 md:mb-8 leading-relaxed text-sm md:text-base">
+                        Dedicated BSIT graduate with a passion for programming and technology. 
+                        Focused on delivering quality solutions through attention to detail and continuous learning. 
+                        Experienced in Python, JavaScript, and web development with a strong foundation in software engineering principles.
                     </p>
-
-                    <div class="space-y-3 mb-10 text-sm text-gray-500 font-light">
-                        <p class="flex items-center justify-center md:justify-start gap-3">
-                            <span class="w-1 h-1 bg-primary rounded-full"></span>
-                            Purok 4 Los Arcos, Prosperidad Agusan del Sur
-                        </p>
-                        <p class="flex items-center justify-center md:justify-start gap-3">
-                            <span class="w-1 h-1 bg-primary rounded-full"></span>
-                            johnkeneth.diola@carsu.edu.ph
-                        </p>
-                        <p class="flex items-center justify-center md:justify-start gap-3">
-                            <span class="w-1 h-1 bg-primary rounded-full"></span>
-                            (+63) 981 234 1572
-                        </p>
+                    
+                    <div class="space-y-2 mb-6 md:mb-8 text-xs md:text-sm text-gray-400">
+                        <p>📍 Purok 4 Los Arcos Prosperidad Agusan del Sur</p>
+                        <p>📧 johnkeneth.diola@carsu.edu.ph</p>
+                        <p>📱 +63 981 234 1572</p>
                     </div>
 
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <a href="https://drive.google.com/file/d/1RIXHq9LLxvBiOCc5kUqi9WS6UpSHGhxY/view?usp=sharing" 
-                           target="_blank" rel="noopener noreferrer"
-                           class="btn-minimal bg-primary hover:bg-primary/90 px-8 py-4 rounded-full transition-all duration-300 text-center font-light hover-scale">
+                    <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start">
+                        <button onclick="downloadResume()" class="bg-teal hover:bg-teal/80 px-4 md:px-6 py-2 md:py-3 rounded-lg transition-colors text-sm md:text-base">
                             Download Resume
-                        </a>
-                        <a href="#contact" class="btn-minimal border border-primary/30 text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-full transition-all duration-300 text-center font-light hover-scale">
+                        </button>
+                        <button onclick="scrollToContact()" class="border border-teal text-teal hover:bg-teal hover:text-white px-4 md:px-6 py-2 md:py-3 rounded-lg transition-colors text-sm md:text-base">
                             Get In Touch
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -289,57 +168,52 @@
     </section>
 
     <!-- Education Section -->
-    <section id="education" class="py-20 px-6">
-        <div class="container mx-auto">
-            <h2 class="text-4xl font-light text-center mb-16 fade-in">Education & <span class="text-primary font-normal">Certifications</span></h2>
+    <section id="education" class="py-16 md:py-20 bg-gray-900/50">
+        <div class="container mx-auto px-4 lg:px-6">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-12 md:mb-16">Education</h2>
             
-            <div class="max-w-5xl mx-auto">
-                <!-- Degree -->
-                <div class="bg-dark-secondary/30 border border-primary/10 rounded-2xl p-10 mb-12 hover-glow hover-lift fade-in">
-                    <div class="flex items-start gap-6">
-                        <div class="bg-primary/10 p-4 rounded-full">
-                            <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
-                            </svg>
-                        </div>
+            <div class="grid lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Main Education -->
+                <div class="lg:col-span-2 bg-gray-800/50 rounded-xl p-6 md:p-8 border border-gray-700 hover:border-teal/50 transition-colors">
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-3">
                         <div class="flex-1">
-                            <h3 class="text-2xl font-light mb-3">Bachelor of Science in Information Technology</h3>
-                            <p class="text-primary font-light mb-4 text-lg">Caraga State University • 2021-2025</p>
-                            <div class="flex items-center gap-6 mb-6">
-                                <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-light border border-primary/20">Cum Laude</span>
-                                <span class="text-gray-400 font-light">GPA: 1.75</span>
-                            </div>
-                            <p class="text-gray-400 font-light leading-relaxed">Graduated with honors, demonstrating excellence in programming, database management, and software development with a focus on modern technologies and best practices.</p>
+                            <h3 class="text-xl md:text-2xl font-bold text-teal mb-2">Bachelor of Science in Information Technology</h3>
+                            <p class="text-gray-300 text-base md:text-lg">Caraga State University</p>
+                            <p class="text-gray-400 text-sm md:text-base">2021 - 2025</p>
+                        </div>
+                        <div class="bg-teal/20 text-teal px-3 py-1 rounded-full text-xs md:text-sm font-semibold self-start">
+                            Cum Laude
                         </div>
                     </div>
+                    <div class="bg-teal/10 rounded-lg p-3 md:p-4 mb-4">
+                        <p class="text-teal font-semibold text-sm md:text-base">GPA: 1.75</p>
+                        <p class="text-gray-300 text-xs md:text-sm">Graduated with high academic distinction</p>
+                    </div>
+                    <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+                        Comprehensive program covering software development, database management, 
+                        web technologies, and system analysis. Strong foundation in programming 
+                        languages and software engineering principles.
+                    </p>
                 </div>
 
                 <!-- Certifications -->
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-dark-secondary/20 border border-primary/5 rounded-xl p-8 hover-lift fade-in">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="bg-primary/10 p-3 rounded-full">
-                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M9,5V9H21V5M9,19H21V15H9M9,14H21V10H9M4,9H8L6,7L4,9M4,19H8L6,17L4,19M4,14H8L6,12L4,14Z"/>
-                                </svg>
-                            </div>
-                            <h4 class="font-light text-lg">Python Data Science Bootcamp</h4>
+                <div class="space-y-4 md:space-y-6">
+                    <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700 hover:border-teal/50 transition-colors">
+                        <h4 class="text-base md:text-lg font-semibold text-teal mb-2">Python Data Science Bootcamp</h4>
+                        <p class="text-gray-300 text-sm mb-2">Udemy</p>
+                        <p class="text-gray-400 text-xs md:text-sm">2025</p>
+                        <div class="mt-3 bg-teal/20 text-teal px-2 py-1 rounded text-xs inline-block">
+                            Certified
                         </div>
-                        <p class="text-sm text-primary mb-3 font-light">Udemy • 2025</p>
-                        <p class="text-sm text-gray-400 font-light leading-relaxed">Comprehensive training in Python programming for data analysis and machine learning applications.</p>
                     </div>
 
-                    <div class="bg-dark-secondary/20 border border-primary/5 rounded-xl p-8 hover-lift fade-in">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="bg-primary/10 p-3 rounded-full">
-                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
-                                </svg>
-                            </div>
-                            <h4 class="font-light text-lg">Programming Internship</h4>
+                    <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700 hover:border-teal/50 transition-colors">
+                        <h4 class="text-base md:text-lg font-semibold text-teal mb-2">Programming Internship</h4>
+                        <p class="text-gray-300 text-sm mb-2">TechSolutions</p>
+                        <p class="text-gray-400 text-xs md:text-sm">2024</p>
+                        <div class="mt-3 bg-teal/20 text-teal px-2 py-1 rounded text-xs inline-block">
+                            Completed
                         </div>
-                        <p class="text-sm text-primary mb-3 font-light">TechSolutions Inc. • 2024</p>
-                        <p class="text-sm text-gray-400 font-light leading-relaxed">Hands-on experience in module development, code debugging, and quality assurance practices.</p>
                     </div>
                 </div>
             </div>
@@ -347,44 +221,76 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-16 px-6">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12">Professional <span class="text-primary">Experience</span></h2>
+    <section id="experience" class="py-16 md:py-20">
+        <div class="container mx-auto px-4 lg:px-6">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-12 md:mb-16">Experience</h2>
             
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-dark-secondary border border-dark-tertiary rounded-lg p-8">
-                    <div class="flex flex-col md:flex-row md:items-start gap-6">
-                        <div class="md:w-1/3">
-                            <h3 class="text-xl font-semibold mb-2">Programming Intern</h3>
-                            <p class="text-primary font-medium mb-2">TechSolution Inc.</p>
-                            <p class="text-sm text-gray-400 mb-4">March - May 2023 • Butuan City</p>
+            <div class="max-w-5xl mx-auto">
+                <div class="bg-gray-800/50 rounded-xl p-6 md:p-8 border border-gray-700">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6 gap-3">
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold text-teal mb-2">Programming Intern</h3>
+                            <p class="text-gray-300 text-base md:text-lg">TechSolution Inc.</p>
+                            <p class="text-gray-400 text-sm md:text-base">March 2023 - May 2023 • Butuan City</p>
                         </div>
-                        
-                        <div class="md:w-2/3">
-                            <h4 class="font-semibold mb-4 text-primary">Key Project: Module Development Assignment</h4>
-                            
-                            <div class="space-y-4">
-                                <div>
-                                    <h5 class="font-medium mb-2">🎯 Situation & Task</h5>
-                                    <p class="text-gray-400 text-sm">Assigned to develop a critical software module for the company's main application, requiring independent problem-solving and adherence to strict quality standards.</p>
-                                </div>
-                                
-                                <div>
-                                    <h5 class="font-medium mb-2">⚡ Action</h5>
-                                    <p class="text-gray-400 text-sm">Implemented comprehensive debugging processes, developed clean and efficient code, and conducted thorough quality assurance testing to ensure module reliability.</p>
-                                </div>
-                                
-                                <div>
-                                    <h5 class="font-medium mb-2">🏆 Result</h5>
-                                    <p class="text-gray-400 text-sm">Successfully delivered a fully functional module that met all requirements, demonstrating strong independent development capabilities and attention to detail.</p>
-                                </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-6 md:gap-8">
+                        <div class="space-y-4 md:space-y-6">
+                            <div class="bg-gray-900/50 rounded-lg p-4">
+                                <h4 class="font-semibold text-teal mb-2 text-sm md:text-base">Situation</h4>
+                                <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+                                    Joined as a programming intern in a fast-paced development environment 
+                                    working on multiple client projects requiring diverse technical skills.
+                                </p>
                             </div>
 
-                            <div class="mt-6 flex flex-wrap gap-2">
-                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs">Code Debugging</span>
-                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs">Independent Development</span>
-                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs">Quality Assurance</span>
-                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs">Module Development</span>
+                            <div class="bg-gray-900/50 rounded-lg p-4">
+                                <h4 class="font-semibold text-teal mb-2 text-sm md:text-base">Task</h4>
+                                <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+                                    Responsible for debugging existing code, developing new features independently, 
+                                    and ensuring quality assurance across various programming projects.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4 md:space-y-6">
+                            <div class="bg-gray-900/50 rounded-lg p-4">
+                                <h4 class="font-semibold text-teal mb-2 text-sm md:text-base">Action</h4>
+                                <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+                                    Implemented systematic debugging approaches, developed clean and efficient code, 
+                                    participated in code reviews, and maintained detailed documentation of solutions.
+                                </p>
+                            </div>
+
+                            <div class="bg-gray-900/50 rounded-lg p-4">
+                                <h4 class="font-semibold text-teal mb-2 text-sm md:text-base">Result</h4>
+                                <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+                                    Successfully completed all assigned projects, improved code quality metrics, 
+                                    and received positive feedback for attention to detail and independent work ethic.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 md:mt-8 pt-6 border-t border-gray-700">
+                        <h4 class="font-semibold text-teal mb-4 text-sm md:text-base">Key Accomplishments</h4>
+                        <div class="grid md:grid-cols-2 gap-3 md:gap-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
+                                <span class="text-gray-300 text-xs md:text-sm">Advanced code debugging techniques</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
+                                <span class="text-gray-300 text-xs md:text-sm">Independent feature development</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
+                                <span class="text-gray-300 text-xs md:text-sm">Quality assurance implementation</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
+                                <span class="text-gray-300 text-xs md:text-sm">Extended programming sessions</span>
                             </div>
                         </div>
                     </div>
@@ -394,312 +300,298 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-16 px-6 bg-dark-secondary">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12">Skills & <span class="text-primary">Expertise</span></h2>
+    <section id="skills" class="py-16 md:py-20 bg-gray-900/50">
+        <div class="container mx-auto px-4 lg:px-6">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-12 md:mb-16">Skills</h2>
             
-            <div class="max-w-6xl mx-auto">
-                <div class="grid md:grid-cols-3 gap-8 mb-12">
-                    <!-- Technical Skills -->
-                    <div class="bg-dark border border-dark-tertiary rounded-lg p-6">
-                        <h3 class="text-xl font-semibold mb-6 text-primary">Technical Skills</h3>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between mb-3">
-                                    <span class="text-sm font-light">Python</span>
-                                    <span class="text-xs text-gray-500">Advanced</span>
-                                </div>
-                                <div class="bg-dark-tertiary/50 rounded-full h-1">
-                                    <div class="bg-gradient-to-r from-primary to-primary/80 h-1 rounded-full skill-bar" style="--target-width: 90%"></div>
-                                </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12">
+                <!-- Technical Skills -->
+                <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700 md:col-span-2 lg:col-span-1">
+                    <h3 class="text-lg md:text-xl font-semibold text-teal mb-4 md:mb-6">Technical Skills</h3>
+                    <div class="space-y-3 md:space-y-4">
+                        <div class="skill-item" data-skill="python">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 text-sm md:text-base">Python</span>
+                                <span class="text-teal text-sm md:text-base">85%</span>
                             </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-3">
-                                    <span class="text-sm font-light">HTML/CSS</span>
-                                    <span class="text-xs text-gray-500">Advanced</span>
-                                </div>
-                                <div class="bg-dark-tertiary/50 rounded-full h-1">
-                                    <div class="bg-gradient-to-r from-primary to-primary/80 h-1 rounded-full skill-bar" style="--target-width: 85%"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-3">
-                                    <span class="text-sm font-light">JavaScript</span>
-                                    <span class="text-xs text-gray-500">Intermediate</span>
-                                </div>
-                                <div class="bg-dark-tertiary/50 rounded-full h-1">
-                                    <div class="bg-gradient-to-r from-primary to-primary/80 h-1 rounded-full skill-bar" style="--target-width: 70%"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-3">
-                                    <span class="text-sm font-light">SQL</span>
-                                    <span class="text-xs text-gray-500">Intermediate</span>
-                                </div>
-                                <div class="bg-dark-tertiary/50 rounded-full h-1">
-                                    <div class="bg-gradient-to-r from-primary to-primary/80 h-1 rounded-full skill-bar" style="--target-width: 75%"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between mb-3">
-                                    <span class="text-sm font-light">Git</span>
-                                    <span class="text-xs text-gray-500">Intermediate</span>
-                                </div>
-                                <div class="bg-dark-tertiary/50 rounded-full h-1">
-                                    <div class="bg-gradient-to-r from-primary to-primary/80 h-1 rounded-full skill-bar" style="--target-width: 65%"></div>
-                                </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar bg-teal h-2 rounded-full" data-width="85"></div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Collaboration -->
-                    <div class="bg-dark border border-dark-tertiary rounded-lg p-6">
-                        <h3 class="text-xl font-semibold mb-6 text-primary">Collaboration</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-3">
-                                <div class="bg-primary/20 p-2 rounded">
-                                    <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M16,4C18.11,4 20,5.89 20,8A4,4 0 0,1 16,12C15.87,12 15.76,12 15.65,12L19.64,16H17.23L13.24,12C10.39,12 8,9.61 8,6.67V6.5C8,5.67 8.67,5 9.5,5H10.5C11.33,5 12,5.67 12,6.5V8.5H16M16,6A2,2 0 0,0 14,8A2,2 0 0,0 16,10A2,2 0 0,0 18,8A2,2 0 0,0 16,6M7,13A4,4 0 0,1 11,17A4,4 0 0,1 7,21A4,4 0 0,1 3,17A4,4 0 0,1 7,13M7,15A2,2 0 0,0 5,17A2,2 0 0,0 7,19A2,2 0 0,0 9,17A2,2 0 0,0 7,15Z"/>
-                                    </svg>
-                                </div>
-                                <span class="text-sm">Team Collaboration</span>
+                        <div class="skill-item" data-skill="javascript">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 text-sm md:text-base">JavaScript</span>
+                                <span class="text-teal text-sm md:text-base">70%</span>
                             </div>
-                            <div class="flex items-center gap-3">
-                                <div class="bg-primary/20 p-2 rounded">
-                                    <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"/>
-                                    </svg>
-                                </div>
-                                <span class="text-sm">Communication</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="bg-primary/20 p-2 rounded">
-                                    <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M9,10H7V12H9V10M13,10H11V12H13V10M17,10H15V12H17V10M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z"/>
-                                    </svg>
-                                </div>
-                                <span class="text-sm">Project Management</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="bg-primary/20 p-2 rounded">
-                                    <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z"/>
-                                    </svg>
-                                </div>
-                                <span class="text-sm">Problem Solving</span>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar bg-teal h-2 rounded-full" data-width="70"></div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Languages -->
-                    <div class="bg-dark border border-dark-tertiary rounded-lg p-6">
-                        <h3 class="text-xl font-semibold mb-6 text-primary">Languages</h3>
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm">Filipino</span>
-                                <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs">Native</span>
+                        <div class="skill-item" data-skill="html-css">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 text-sm md:text-base">HTML/CSS</span>
+                                <span class="text-teal text-sm md:text-base">90%</span>
                             </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm">English</span>
-                                <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs">Fluent</span>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar bg-teal h-2 rounded-full" data-width="90"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item" data-skill="sql">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 text-sm md:text-base">SQL</span>
+                                <span class="text-teal text-sm md:text-base">65%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar bg-teal h-2 rounded-full" data-width="65"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item" data-skill="git">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 text-sm md:text-base">Git</span>
+                                <span class="text-teal text-sm md:text-base">75%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar bg-teal h-2 rounded-full" data-width="75"></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Core Strengths Quote -->
-                <div class="text-center bg-dark border border-dark-tertiary rounded-lg p-8">
-                    <blockquote class="text-lg italic text-gray-300 mb-4">
-                        "Focused, dedicated, and detail-oriented approach to every project, 
-                        ensuring high-quality deliverables through continuous learning and professional growth."
-                    </blockquote>
-                    <div class="flex justify-center gap-4 flex-wrap">
-                        <span class="bg-primary/20 text-primary px-4 py-2 rounded-full text-sm">Attention to Detail</span>
-                        <span class="bg-primary/20 text-primary px-4 py-2 rounded-full text-sm">Continuous Learning</span>
-                        <span class="bg-primary/20 text-primary px-4 py-2 rounded-full text-sm">Quality Focus</span>
+                <!-- Collaboration Skills -->
+                <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700">
+                    <h3 class="text-lg md:text-xl font-semibold text-teal mb-4 md:mb-6">Collaboration</h3>
+                    <div class="space-y-3 md:space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
+                            <span class="text-gray-300 text-sm md:text-base">Team Communication</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
+                            <span class="text-gray-300 text-sm md:text-base">Code Reviews</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
+                            <span class="text-gray-300 text-sm md:text-base">Project Management</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
+                            <span class="text-gray-300 text-sm md:text-base">Documentation</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
+                            <span class="text-gray-300 text-sm md:text-base">Problem Solving</span>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700">
+                    <h3 class="text-lg md:text-xl font-semibold text-teal mb-4 md:mb-6">Languages</h3>
+                    <div class="space-y-3 md:space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300 text-sm md:text-base">Filipino</span>
+                            <span class="text-teal text-xs md:text-sm">Native</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300 text-sm md:text-base">English</span>
+                            <span class="text-teal text-xs md:text-sm">Fluent</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300 text-sm md:text-base">Cebuano</span>
+                            <span class="text-teal text-xs md:text-sm">Native</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Strengths Quote -->
+            <div class="max-w-3xl mx-auto bg-teal/10 rounded-xl p-6 md:p-8 border border-teal/30">
+                <blockquote class="text-center">
+                    <p class="text-base md:text-lg text-gray-300 mb-4 leading-relaxed">
+                        "Attention to detail and dedication to quality drive my approach to every project. 
+                        I believe in continuous learning and delivering solutions that exceed expectations."
+                    </p>
+                    <footer class="text-teal font-semibold text-sm md:text-base">— John Keneth L. Diola</footer>
+                </blockquote>
+                <div class="flex flex-wrap justify-center gap-2 md:gap-4 mt-4 md:mt-6">
+                    <div class="bg-teal/20 text-teal px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">Quality-Focused</div>
+                    <div class="bg-teal/20 text-teal px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">Detail-Oriented</div>
+                    <div class="bg-teal/20 text-teal px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">Self-Motivated</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-16 px-6">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12">Featured <span class="text-primary">Projects</span></h2>
+    <section id="projects" class="py-16 md:py-20">
+        <div class="container mx-auto px-4 lg:px-6">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-12 md:mb-16">Projects</h2>
             
-            <div class="max-w-6xl mx-auto">
-                <div class="grid md:grid-cols-3 gap-8 mb-12">
-                    <!-- Project 1 -->
-                    <div class="bg-dark-secondary/20 border border-primary/5 rounded-2xl p-8 hover-lift hover-glow fade-in group">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 transition-colors">
-                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M3,3H21V21H3V3M13.5,12A1.5,1.5 0 0,1 12,10.5A1.5,1.5 0 0,1 13.5,9A1.5,1.5 0 0,1 15,10.5A1.5,1.5 0 0,1 13.5,12M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16Z"/>
-                                </svg>
-                            </div>
-                            <h3 class="font-light text-lg">Python Data Science Project</h3>
-                        </div>
-                        <p class="text-gray-400 text-sm mb-6 font-light leading-relaxed">Comprehensive data analysis and visualization project using Python, pandas, and matplotlib for business insights.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">Python</span>
-                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">Pandas</span>
-                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">Matplotlib</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs text-gray-500 font-light">Completed</span>
-                            <button onclick="viewProject('data-science')" class="text-primary hover:text-primary/80 text-sm font-light group-hover:translate-x-1 transition-transform">View Details →</button>
-                        </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Project 1 -->
+                <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700 hover:border-teal/50 transition-colors">
+                    <h3 class="text-lg md:text-xl font-semibold text-teal mb-3">Python Data Science Project</h3>
+                    <p class="text-gray-400 mb-4 text-sm md:text-base leading-relaxed">
+                        Comprehensive data analysis and visualization project using Python libraries 
+                        for statistical analysis and machine learning.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Python</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Pandas</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Matplotlib</span>
                     </div>
-
-                    <!-- Project 2 -->
-                    <div class="bg-dark-secondary/20 border border-primary/5 rounded-2xl p-8 hover-lift hover-glow fade-in group">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 transition-colors">
-                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
-                                </svg>
-                            </div>
-                            <h3 class="font-light text-lg">Module Development Assignment</h3>
-                        </div>
-                        <p class="text-gray-400 text-sm mb-6 font-light leading-relaxed">Professional software module developed during internship at TechSolutions Inc., featuring robust error handling and testing.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">JavaScript</span>
-                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">Testing</span>
-                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">Debugging</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs text-gray-500 font-light">Production</span>
-                            <button onclick="viewProject('module-dev')" class="text-primary hover:text-primary/80 text-sm font-light group-hover:translate-x-1 transition-transform">View Details →</button>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="bg-dark-secondary/20 border border-primary/5 rounded-2xl p-8 hover-lift hover-glow fade-in group">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 transition-colors">
-                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
-                                </svg>
-                            </div>
-                            <h3 class="font-light text-lg">Academic BSIT Capstone</h3>
-                        </div>
-                        <p class="text-gray-400 text-sm mb-6 font-light leading-relaxed">Final year capstone project demonstrating full-stack development skills and database management expertise.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">Full-Stack</span>
-                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">Database</span>
-                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">SQL</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs text-gray-500 font-light">Completed</span>
-                            <button onclick="viewProject('capstone')" class="text-primary hover:text-primary/80 text-sm font-light group-hover:translate-x-1 transition-transform">View Details →</button>
-                        </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-green-400 text-xs md:text-sm">Completed</span>
+                        <button onclick="openProjectModal('project1')" class="text-teal hover:text-teal/80 transition-colors text-sm md:text-base">
+                            View Details →
+                        </button>
                     </div>
                 </div>
 
-                <!-- Call to Action -->
-                <div class="text-center bg-dark-secondary border border-dark-tertiary rounded-lg p-8">
-                    <h3 class="text-xl font-semibold mb-4">Interested in collaborating?</h3>
-                    <p class="text-gray-400 mb-6">I'm always excited to work on new projects and challenges. Let's discuss how we can work together!</p>
-                    <a href="#contact" class="bg-primary hover:bg-primary/80 px-6 py-3 rounded-lg transition-colors inline-block">
-                        Start a Conversation
-                    </a>
+                <!-- Project 2 -->
+                <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700 hover:border-teal/50 transition-colors">
+                    <h3 class="text-lg md:text-xl font-semibold text-teal mb-3">Module Development Assignment</h3>
+                    <p class="text-gray-400 mb-4 text-sm md:text-base leading-relaxed">
+                        Custom software module development with focus on clean architecture 
+                        and maintainable code structure.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">JavaScript</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Node.js</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Testing</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-green-400 text-xs md:text-sm">Completed</span>
+                        <button onclick="openProjectModal('project2')" class="text-teal hover:text-teal/80 transition-colors text-sm md:text-base">
+                            View Details →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700 hover:border-teal/50 transition-colors md:col-span-2 lg:col-span-1">
+                    <h3 class="text-lg md:text-xl font-semibold text-teal mb-3">Academic Capstone</h3>
+                    <p class="text-gray-400 mb-4 text-sm md:text-base leading-relaxed">
+                        Final year capstone project demonstrating full-stack development 
+                        skills and system integration capabilities.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Full-Stack</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Database</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">API</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-green-400 text-xs md:text-sm">Completed</span>
+                        <button onclick="openProjectModal('project3')" class="text-teal hover:text-teal/80 transition-colors text-sm md:text-base">
+                            View Details →
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 px-6 bg-dark-secondary">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12">Get In <span class="text-primary">Touch</span></h2>
+    <section id="contact" class="py-16 md:py-20 bg-gray-900/50">
+        <div class="container mx-auto px-4 lg:px-6">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-12 md:mb-16">Get In Touch</h2>
             
-            <div class="max-w-4xl mx-auto">
-                <div class="grid md:grid-cols-2 gap-8 mb-12">
-                    <!-- Contact Info -->
-                    <div class="bg-dark border border-dark-tertiary rounded-lg p-8">
-                        <h3 class="text-xl font-semibold mb-6">Contact Information</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-4">
-                                <div class="bg-primary/20 p-3 rounded">
-                                    <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="font-medium">Email</p>
-                                    <a href="mailto:johnkeneth.diola@carsu.edu.ph" class="text-primary hover:text-primary/80">johnkeneth.diola@carsu.edu.ph</a>
-                                </div>
+            <div class="grid lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
+                <!-- Contact Form -->
+                <div class="bg-gray-800/50 rounded-xl p-6 md:p-8 border border-gray-700">
+                    <h3 class="text-xl md:text-2xl font-semibold text-teal mb-4 md:mb-6">Send a Message</h3>
+                    <form id="contact-form" class="space-y-4 md:space-y-6">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-300 mb-2 text-sm md:text-base">Name *</label>
+                                <input type="text" id="contact-name" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 md:px-4 py-2 md:py-3 text-white focus:border-teal focus:outline-none text-sm md:text-base">
                             </div>
-                            
-                            <div class="flex items-center gap-4">
-                                <div class="bg-primary/20 p-3 rounded">
-                                    <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="font-medium">Phone</p>
-                                    <a href="tel:+639812341572" class="text-primary hover:text-primary/80">(+63) 981 234 1572</a>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center gap-4">
-                                <div class="bg-primary/20 p-3 rounded">
-                                    <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="font-medium">Location</p>
-                                    <p class="text-gray-400">Purok 4 Los Arcos, Prosperidad<br>Agusan del Sur, Philippines</p>
-                                </div>
+                            <div>
+                                <label class="block text-gray-300 mb-2 text-sm md:text-base">Email *</label>
+                                <input type="email" id="contact-email" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 md:px-4 py-2 md:py-3 text-white focus:border-teal focus:outline-none text-sm md:text-base">
                             </div>
                         </div>
-                    </div>
+                        
+                        <div>
+                            <label class="block text-gray-300 mb-2 text-sm md:text-base">Inquiry Type</label>
+                            <select id="inquiry-type" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 md:px-4 py-2 md:py-3 text-white focus:border-teal focus:outline-none text-sm md:text-base">
+                                <option value="general">General Inquiry</option>
+                                <option value="job">Job Opportunity</option>
+                                <option value="freelance">Freelance Project</option>
+                                <option value="collaboration">Collaboration</option>
+                                <option value="internship">Internship</option>
+                            </select>
+                        </div>
 
-                    <!-- References -->
-                    <div class="bg-dark border border-dark-tertiary rounded-lg p-8">
-                        <h3 class="text-xl font-semibold mb-6">Professional References</h3>
-                        <div class="space-y-6">
-                            <div>
-                                <h4 class="font-medium text-primary">Ms. Maria Santos</h4>
-                                <p class="text-sm text-gray-400">Supervisor, TechSolutions Inc.</p>
-                                <p class="text-sm text-gray-400">Internship Mentor</p>
-                            </div>
-                            
-                            <div>
-                                <h4 class="font-medium text-primary">Mr. Edwin Manuel Jarlata</h4>
-                                <p class="text-sm text-gray-400">Professor, Caraga State University</p>
-                                <p class="text-sm text-gray-400">Academic Advisor</p>
-                            </div>
-                            
-                            <div>
-                                <h4 class="font-medium text-primary">Ms. Anna Lopez</h4>
-                                <p class="text-sm text-gray-400">Faculty, Caraga State University</p>
-                                <p class="text-sm text-gray-400">Capstone Project Supervisor</p>
-                            </div>
+                        <div>
+                            <label class="block text-gray-300 mb-2 text-sm md:text-base">Subject *</label>
+                            <input type="text" id="contact-subject" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 md:px-4 py-2 md:py-3 text-white focus:border-teal focus:outline-none text-sm md:text-base">
                         </div>
+
+                        <div>
+                            <label class="block text-gray-300 mb-2 text-sm md:text-base">Message *</label>
+                            <textarea id="contact-message" required rows="4" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 md:px-4 py-2 md:py-3 text-white focus:border-teal focus:outline-none resize-none text-sm md:text-base"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-teal hover:bg-teal/80 text-white py-2 md:py-3 rounded-lg transition-colors text-sm md:text-base">
+                            Send Message
+                        </button>
+                    </form>
+
+                    <div id="form-success" class="hidden mt-4 p-3 md:p-4 bg-green-900/50 border border-green-700 rounded-lg">
+                        <p class="text-green-400 text-sm md:text-base">Message prepared! Your email client will open shortly.</p>
                     </div>
                 </div>
 
-                <!-- Final CTA -->
-                <div class="text-center bg-dark border border-dark-tertiary rounded-lg p-8">
-                    <h3 class="text-xl font-semibold mb-4">Ready to collaborate?</h3>
-                    <p class="text-gray-400 mb-6">Whether you have a project in mind or just want to connect, I'd love to hear from you. Let's create something amazing together!</p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="mailto:johnkeneth.diola@carsu.edu.ph" class="bg-primary hover:bg-primary/80 px-6 py-3 rounded-lg transition-colors">
-                            Send Email
-                        </a>
-                        <a href="https://drive.google.com/file/d/1RIXHq9LLxvBiOCc5kUqi9WS6UpSHGhxY/view?usp=sharing" 
-                           target="_blank" rel="noopener noreferrer"
-                           class="border border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-lg transition-colors">
-                            Download Resume
-                        </a>
+                <!-- Contact Info & References -->
+                <div class="space-y-6 md:space-y-8">
+                    <!-- Direct Contact -->
+                    <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700">
+                        <h3 class="text-lg md:text-xl font-semibold text-teal mb-3 md:mb-4">Direct Contact</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-teal">📧</span>
+                                <a href="mailto:johnkeneth.diola@carsu.edu.ph" class="text-gray-300 hover:text-teal transition-colors text-sm md:text-base break-all">
+                                    johnkeneth.diola@carsu.edu.ph
+                                </a>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-teal">📱</span>
+                                <a href="tel:+639812341572" class="text-gray-300 hover:text-teal transition-colors text-sm md:text-base">
+                                    +63 981 234 1572
+                                </a>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <span class="text-teal mt-0.5">📍</span>
+                                <span class="text-gray-300 text-sm md:text-base">Purok 4 Los Arcos Prosperidad Agusan del Sur</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Professional References -->
+                    <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700">
+                        <h3 class="text-lg md:text-xl font-semibold text-teal mb-3 md:mb-4">Professional References</h3>
+                        <div class="space-y-3 md:space-y-4">
+                            <div class="border-l-2 border-teal pl-3 md:pl-4">
+                                <h4 class="font-semibold text-gray-300 text-sm md:text-base">Ms. Maria Santos</h4>
+                                <p class="text-gray-400 text-xs md:text-sm">Senior Developer, TechSolutions</p>
+                                <p class="text-gray-400 text-xs md:text-sm">maria.santos@techsolutions.com</p>
+                            </div>
+                            <div class="border-l-2 border-teal pl-3 md:pl-4">
+                                <h4 class="font-semibold text-gray-300 text-sm md:text-base">Mr. Edwin Jarlata</h4>
+                                <p class="text-gray-400 text-xs md:text-sm">Professor, Caraga State University</p>
+                                <p class="text-gray-400 text-xs md:text-sm">edwin.jarlata@carsu.edu.ph</p>
+                            </div>
+                            <div class="border-l-2 border-teal pl-3 md:pl-4">
+                                <h4 class="font-semibold text-gray-300 text-sm md:text-base">Ms. Anna Lopez</h4>
+                                <p class="text-gray-400 text-xs md:text-sm">Academic Advisor, Caraga State University</p>
+                                <p class="text-gray-400 text-xs md:text-sm">anna.lopez@carsu.edu.ph</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -707,27 +599,114 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-8 px-6 border-t border-dark-tertiary">
-        <div class="container mx-auto text-center">
-            <p class="text-gray-400">&copy; 2025 John Keneth L. Diola. All rights reserved.</p>
+    <footer class="bg-gray-900 border-t border-gray-800 py-8 md:py-12">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <!-- Brand & Bio -->
+                <div class="md:col-span-2 lg:col-span-2">
+                    <div class="text-xl md:text-2xl font-bold text-teal mb-3 md:mb-4">John Keneth L. Diola</div>
+                    <p class="text-gray-400 mb-3 md:mb-4 leading-relaxed text-sm md:text-base">
+                        BSIT Graduate passionate about creating quality software solutions. 
+                        Always eager to learn new technologies and contribute to meaningful projects.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="mailto:johnkeneth.diola@carsu.edu.ph" class="text-gray-400 hover:text-teal transition-colors" title="Email">
+                            <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/johnkeneth" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-teal transition-colors" title="GitHub">
+                            <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com/in/johnkeneth-diola" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-teal transition-colors" title="LinkedIn">
+                            <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-base md:text-lg font-semibold text-teal mb-3 md:mb-4">Quick Links</h4>
+                    <ul class="space-y-1 md:space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-teal transition-colors text-sm md:text-base">About</a></li>
+                        <li><a href="#education" class="text-gray-400 hover:text-teal transition-colors text-sm md:text-base">Education</a></li>
+                        <li><a href="#experience" class="text-gray-400 hover:text-teal transition-colors text-sm md:text-base">Experience</a></li>
+                        <li><a href="#skills" class="text-gray-400 hover:text-teal transition-colors text-sm md:text-base">Skills</a></li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-teal transition-colors text-sm md:text-base">Projects</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-teal transition-colors text-sm md:text-base">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-base md:text-lg font-semibold text-teal mb-3 md:mb-4">Contact Info</h4>
+                    <div class="space-y-1 md:space-y-2 text-gray-400 text-xs md:text-sm">
+                        <p class="break-all">📧 johnkeneth.diola@carsu.edu.ph</p>
+                        <p>📱 +63 981 234 1572</p>
+                        <p>📍 Purok 4 Los Arcos<br>Prosperidad, Agusan del Sur</p>
+                        <button onclick="downloadResume()" class="mt-2 md:mt-3 text-teal hover:text-teal/80 transition-colors text-xs md:text-sm">
+                            📄 Download Resume
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 mt-6 md:mt-8 pt-6 md:pt-8 flex flex-col lg:flex-row justify-between items-center gap-4">
+                <p class="text-gray-400 text-xs md:text-sm text-center lg:text-left">
+                    © 2025 John Keneth L. Diola. All rights reserved.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+                    <span class="text-gray-400 text-xs md:text-sm">Built with</span>
+                    <div class="flex flex-wrap justify-center gap-1 md:gap-2">
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">HTML</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Tailwind CSS</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">JavaScript</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <!-- Project Modals -->
+    <div id="project-modal" class="fixed inset-0 bg-black/80 modal hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-700 flex justify-between items-center">
+                <h3 id="modal-title" class="text-2xl font-bold text-teal"></h3>
+                <button onclick="closeProjectModal()" class="text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="modal-content" class="p-6">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
     <script>
         // Mobile menu toggle
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('open');
-        }
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
 
-        // Project interaction
-        function viewProject(projectId) {
-            console.log(`Viewing project: ${projectId}`);
-            // Placeholder for future project detail functionality
-            alert(`Project details for ${projectId} would be displayed here. This is a placeholder for future functionality.`);
-        }
+        // Scroll progress indicator
+        window.addEventListener('scroll', function() {
+            const scrollProgress = document.getElementById('scroll-progress');
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
 
-        // Smooth scrolling for navigation links
+        // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -737,68 +716,264 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
                 }
             });
         });
 
-        // Scroll animations
-        function initScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+        // Skills animation on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            // Observe all elements with animation classes
-            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
-                observer.observe(el);
+        const skillsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.progress-bar');
+                    progressBars.forEach((bar, index) => {
+                        setTimeout(() => {
+                            const width = bar.getAttribute('data-width');
+                            bar.style.width = width + '%';
+                        }, index * 200);
+                    });
+                }
             });
+        }, observerOptions);
+
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+            skillsObserver.observe(skillsSection);
         }
 
-        // Animate skill bars on scroll
-        function animateSkillBars() {
-            const skillBars = document.querySelectorAll('.skill-bar');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate');
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            skillBars.forEach(bar => observer.observe(bar));
-        }
-
-        // Smooth scroll with offset for fixed header
-        function smoothScrollToSection(targetId) {
-            const target = document.querySelector(targetId);
-            if (target) {
-                const headerHeight = 80;
-                const targetPosition = target.offsetTop - headerHeight;
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-        // Initialize animations when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            initScrollAnimations();
-            animateSkillBars();
+        // Toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            toastMessage.textContent = message;
+            toast.classList.add('show');
             
-            // Add stagger delay to fade-in elements
-            document.querySelectorAll('.fade-in').forEach((el, index) => {
-                el.style.transitionDelay = `${index * 0.1}s`;
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Resume download function
+        function downloadResume() {
+            // Simulate resume download
+            showToast('Resume download initiated! Opening Google Drive...');
+            // In a real implementation, this would open the actual resume link
+            window.open('https://drive.google.com/file/d/your-resume-id/view', '_blank', 'noopener,noreferrer');
+        }
+
+        // Scroll to contact function
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
+        }
+
+        // Project modal functions
+        const projectData = {
+            project1: {
+                title: 'Python Data Science Project',
+                duration: '3 months',
+                role: 'Data Analyst & Developer',
+                description: 'Comprehensive data analysis project focusing on statistical analysis and machine learning implementation using Python ecosystem.',
+                challenges: [
+                    'Large dataset processing and optimization',
+                    'Complex statistical modeling requirements',
+                    'Data visualization for non-technical stakeholders'
+                ],
+                outcomes: [
+                    'Improved data processing efficiency by 40%',
+                    'Created automated reporting system',
+                    'Delivered actionable insights for decision making'
+                ],
+                technologies: ['Python', 'Pandas', 'NumPy', 'Matplotlib', 'Scikit-learn', 'Jupyter'],
+                github: 'https://github.com/johnkeneth/data-science-project',
+                demo: 'https://johnkeneth-datascience.netlify.app'
+            },
+            project2: {
+                title: 'Module Development Assignment',
+                duration: '2 months',
+                role: 'Software Developer',
+                description: 'Custom software module development with emphasis on clean architecture, maintainable code, and comprehensive testing.',
+                challenges: [
+                    'Complex business logic implementation',
+                    'Integration with existing systems',
+                    'Performance optimization requirements'
+                ],
+                outcomes: [
+                    'Delivered fully functional module on schedule',
+                    'Achieved 95% test coverage',
+                    'Reduced system response time by 25%'
+                ],
+                technologies: ['JavaScript', 'Node.js', 'Express', 'Jest', 'MongoDB', 'Docker'],
+                github: 'https://github.com/johnkeneth/module-development',
+                demo: 'https://johnkeneth-module.herokuapp.com'
+            },
+            project3: {
+                title: 'Academic Capstone Project',
+                duration: '6 months',
+                role: 'Full-Stack Developer & Project Lead',
+                description: 'Comprehensive full-stack application demonstrating end-to-end development skills, system integration, and project management.',
+                challenges: [
+                    'Full-stack architecture design',
+                    'Database optimization and scaling',
+                    'User experience and interface design'
+                ],
+                outcomes: [
+                    'Successfully defended capstone with highest marks',
+                    'Implemented scalable architecture',
+                    'Created comprehensive documentation'
+                ],
+                technologies: ['React', 'Node.js', 'PostgreSQL', 'Express', 'Tailwind CSS', 'AWS'],
+                github: 'https://github.com/johnkeneth/capstone-project',
+                demo: 'https://johnkeneth-capstone.vercel.app'
+            }
+        };
+
+        function openProjectModal(projectId) {
+            const modal = document.getElementById('project-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalContent = document.getElementById('modal-content');
+            const project = projectData[projectId];
+
+            modalTitle.textContent = project.title;
+            modalContent.innerHTML = `
+                <div class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div><strong class="text-teal">Duration:</strong> ${project.duration}</div>
+                        <div><strong class="text-teal">Role:</strong> ${project.role}</div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold text-teal mb-2">Project Overview</h4>
+                        <p class="text-gray-300">${project.description}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-semibold text-teal mb-2">Key Challenges</h4>
+                        <ul class="space-y-1">
+                            ${project.challenges.map(challenge => `
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-teal mt-1">•</span>
+                                    <span class="text-gray-300">${challenge}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-semibold text-teal mb-2">Outcomes & Results</h4>
+                        <ul class="space-y-1">
+                            ${project.outcomes.map(outcome => `
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-teal mt-1">✓</span>
+                                    <span class="text-gray-300">${outcome}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-lg font-semibold text-teal mb-2">Technologies Used</h4>
+                        <div class="flex flex-wrap gap-2">
+                            ${project.technologies.map(tech => `
+                                <span class="bg-teal/20 text-teal px-2 py-1 rounded text-sm">${tech}</span>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-gray-700">
+                        <a href="${project.github}" target="_blank" rel="noopener noreferrer" 
+                           class="flex-1 bg-gray-700 hover:bg-gray-600 text-center py-2 px-4 rounded-lg transition-colors">
+                            View on GitHub
+                        </a>
+                        <a href="${project.demo}" target="_blank" rel="noopener noreferrer" 
+                           class="flex-1 bg-teal hover:bg-teal/80 text-center py-2 px-4 rounded-lg transition-colors">
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('project-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeProjectModal();
+            }
+        });
+
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const inquiryType = document.getElementById('inquiry-type').value;
+            const subject = document.getElementById('contact-subject').value;
+            const message = document.getElementById('contact-message').value;
+
+            // Create email content
+            const emailSubject = `[${inquiryType.toUpperCase()}] ${subject}`;
+            const emailBody = `Hello John,
+
+My name is ${name} and I'm reaching out regarding a ${inquiryType} inquiry.
+
+${message}
+
+Best regards,
+${name}
+${email}
+
+---
+This message was sent through your portfolio website.`;
+
+            // Create mailto link
+            const mailtoLink = `mailto:johnkeneth.diola@carsu.edu.ph?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Show success message
+            document.getElementById('form-success').classList.remove('hidden');
+            
+            // Open email client
+            setTimeout(() => {
+                window.location.href = mailtoLink;
+            }, 1000);
+
+            // Reset form after a delay
+            setTimeout(() => {
+                this.reset();
+                document.getElementById('form-success').classList.add('hidden');
+            }, 3000);
+        });
+
+        // Add scroll animations for sections
+        const animateOnScroll = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe all sections for animation
+        document.querySelectorAll('section').forEach(section => {
+            animateOnScroll.observe(section);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98267439733cfec1',t:'MTc1ODQyNTExMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98271bad168afee3',t:'MTc1ODQzMTk3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
