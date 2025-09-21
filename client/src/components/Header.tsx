@@ -25,7 +25,7 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <h1 className="text-xl font-semibold text-primary">JKD</h1>
+            <h1 className="text-xl font-semibold text-primary">keki</h1>
             <span className="text-sm text-muted-foreground hidden sm:block">
               Portfolio
             </span>
