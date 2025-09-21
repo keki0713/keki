@@ -19,20 +19,12 @@ export default function Hero() {
                   data-testid="img-profile-photo"
                 />
               </div>
-              <div className="absolute -bottom-4 -right-4">
-                <Badge variant="secondary" className="text-sm py-2 px-4">
-                  BSIT Graduate
-                </Badge>
-              </div>
             </div>
           </div>
 
           {/* Content */}
           <div className="space-y-6">
             <div className="space-y-4">
-              <Badge variant="outline" className="w-fit">
-                Cum Laude
-              </Badge>
               <h1 className="text-4xl lg:text-5xl font-bold text-foreground">
                 John Keneth L. <span className="text-primary">Diola</span>
               </h1>
