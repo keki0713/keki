@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Keneth L. Diola - BSIT Graduate & Programming Intern</title>
+    <meta name="description" content="Portfolio of John Keneth L. Diola, BSIT Graduate with Cum Laude honors and Programming Intern">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#169976',
+                        dark: '#0f0f0f',
+                        'dark-secondary': '#1a1a1a',
+                        'dark-tertiary': '#2a2a2a'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Enhanced hover effects */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(22, 153, 118, 0.15);
+        }
+        
+        .hover-glow {
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .hover-glow:hover {
+            box-shadow: 0 0 30px rgba(22, 153, 118, 0.3);
+            border-color: #169976;
+        }
+        
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Minimalist button styles */
+        .btn-minimal {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .btn-minimal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn-minimal:hover::before {
+            left: 100%;
+        }
+        
+        /* Skill bar animations */
+        .skill-bar {
+            width: 0;
+            transition: width 1.5s ease-in-out 0.3s;
+        }
+        .skill-bar.animate {
+            width: var(--target-width);
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        /* Floating animation */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Pulse effect */
+        .pulse-border {
+            animation: pulse-border 2s infinite;
+        }
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(22, 153, 118, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(22, 153, 118, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(22, 153, 118, 0); }
+        }
+        
+        /* Minimalist scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #169976;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #20b486;
+        }
+    </style>
+</head>
+<body class="bg-dark text-white font-inter">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-dark/90 backdrop-blur-md border-b border-dark-tertiary/50 z-50">
+        <nav class="container mx-auto px-6 py-6">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-light text-primary tracking-wider">keki</div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="#about" class="text-sm font-light hover:text-primary transition-all duration-300 relative group">
+                        About
+                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#education" class="text-sm font-light hover:text-primary transition-all duration-300 relative group">
+                        Education
+                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#experience" class="text-sm font-light hover:text-primary transition-all duration-300 relative group">
+                        Experience
+                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#skills" class="text-sm font-light hover:text-primary transition-all duration-300 relative group">
+                        Skills
+                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#projects" class="text-sm font-light hover:text-primary transition-all duration-300 relative group">
+                        Projects
+                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="text-sm font-light hover:text-primary transition-all duration-300 relative group">
+                        Contact
+                        <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="https://drive.google.com/file/d/1RIXHq9LLxvBiOCc5kUqi9WS6UpSHGhxY/view?usp=sharing" 
+                       target="_blank" rel="noopener noreferrer"
+                       class="btn-minimal border border-primary/30 text-primary hover:bg-primary hover:text-white px-6 py-2 rounded-full text-sm font-light transition-all duration-300">
+                        Resume
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-dark-secondary border-l border-dark-tertiary md:hidden">
+            <div class="p-6">
+                <button onclick="toggleMobileMenu()" class="float-right text-white mb-8">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <div class="clear-both space-y-4">
+                    <a href="#about" onclick="toggleMobileMenu()" class="block hover:text-primary transition-colors">About</a>
+                    <a href="#education" onclick="toggleMobileMenu()" class="block hover:text-primary transition-colors">Education</a>
+                    <a href="#experience" onclick="toggleMobileMenu()" class="block hover:text-primary transition-colors">Experience</a>
+                    <a href="#skills" onclick="toggleMobileMenu()" class="block hover:text-primary transition-colors">Skills</a>
+                    <a href="#projects" onclick="toggleMobileMenu()" class="block hover:text-primary transition-colors">Projects</a>
+                    <a href="#contact" onclick="toggleMobileMenu()" class="block hover:text-primary transition-colors">Contact</a>
+                    <a href="https://drive.google.com/file/d/1RIXHq9LLxvBiOCc5kUqi9WS6UpSHGhxY/view?usp=sharing" 
+                       target="_blank" rel="noopener noreferrer"
+                       class="block bg-primary hover:bg-primary/80 px-4 py-2 rounded-lg transition-colors text-center">
+                        Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="about" class="pt-32 pb-20 px-6 min-h-screen flex items-center">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <!-- Profile Image -->
+                <div class="flex justify-center md:justify-start slide-in-left">
+                    <div class="relative float">
+                        <div class="w-72 h-72 rounded-full border border-primary/20 bg-gradient-to-br from-dark-secondary to-dark-tertiary flex items-center justify-center pulse-border hover-glow">
+                            <svg class="w-24 h-24 text-primary/80" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="text-center md:text-left slide-in-right">
+                    <h1 class="text-5xl md:text-6xl font-light mb-6 leading-tight">
+                        John Keneth L. <span class="text-primary font-normal">Diola</span>
+                    </h1>
+                    <h2 class="text-xl md:text-2xl text-gray-400 mb-8 font-light">BSIT Graduate & Programming Intern</h2>
+                    
+                    <p class="text-gray-400 mb-10 leading-relaxed font-light text-lg max-w-lg">
+                        Focused and dedicated BSIT graduate with Cum Laude honors. Passionate about creating 
+                        elegant solutions through clean code and continuous learning.
+                    </p>
+
+                    <div class="space-y-3 mb-10 text-sm text-gray-500 font-light">
+                        <p class="flex items-center justify-center md:justify-start gap-3">
+                            <span class="w-1 h-1 bg-primary rounded-full"></span>
+                            Purok 4 Los Arcos, Prosperidad Agusan del Sur
+                        </p>
+                        <p class="flex items-center justify-center md:justify-start gap-3">
+                            <span class="w-1 h-1 bg-primary rounded-full"></span>
+                            johnkeneth.diola@carsu.edu.ph
+                        </p>
+                        <p class="flex items-center justify-center md:justify-start gap-3">
+                            <span class="w-1 h-1 bg-primary rounded-full"></span>
+                            (+63) 981 234 1572
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="https://drive.google.com/file/d/1RIXHq9LLxvBiOCc5kUqi9WS6UpSHGhxY/view?usp=sharing" 
+                           target="_blank" rel="noopener noreferrer"
+                           class="btn-minimal bg-primary hover:bg-primary/90 px-8 py-4 rounded-full transition-all duration-300 text-center font-light hover-scale">
+                            Download Resume
+                        </a>
+                        <a href="#contact" class="btn-minimal border border-primary/30 text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-full transition-all duration-300 text-center font-light hover-scale">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-light text-center mb-16 fade-in">Education & <span class="text-primary font-normal">Certifications</span></h2>
+            
+            <div class="max-w-5xl mx-auto">
+                <!-- Degree -->
+                <div class="bg-dark-secondary/30 border border-primary/10 rounded-2xl p-10 mb-12 hover-glow hover-lift fade-in">
+                    <div class="flex items-start gap-6">
+                        <div class="bg-primary/10 p-4 rounded-full">
+                            <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-light mb-3">Bachelor of Science in Information Technology</h3>
+                            <p class="text-primary font-light mb-4 text-lg">Caraga State University • 2021-2025</p>
+                            <div class="flex items-center gap-6 mb-6">
+                                <span class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-light border border-primary/20">Cum Laude</span>
+                                <span class="text-gray-400 font-light">GPA: 1.75</span>
+                            </div>
+                            <p class="text-gray-400 font-light leading-relaxed">Graduated with honors, demonstrating excellence in programming, database management, and software development with a focus on modern technologies and best practices.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-dark-secondary/20 border border-primary/5 rounded-xl p-8 hover-lift fade-in">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="bg-primary/10 p-3 rounded-full">
+                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9,5V9H21V5M9,19H21V15H9M9,14H21V10H9M4,9H8L6,7L4,9M4,19H8L6,17L4,19M4,14H8L6,12L4,14Z"/>
+                                </svg>
+                            </div>
+                            <h4 class="font-light text-lg">Python Data Science Bootcamp</h4>
+                        </div>
+                        <p class="text-sm text-primary mb-3 font-light">Udemy • 2025</p>
+                        <p class="text-sm text-gray-400 font-light leading-relaxed">Comprehensive training in Python programming for data analysis and machine learning applications.</p>
+                    </div>
+
+                    <div class="bg-dark-secondary/20 border border-primary/5 rounded-xl p-8 hover-lift fade-in">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="bg-primary/10 p-3 rounded-full">
+                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                                </svg>
+                            </div>
+                            <h4 class="font-light text-lg">Programming Internship</h4>
+                        </div>
+                        <p class="text-sm text-primary mb-3 font-light">TechSolutions Inc. • 2024</p>
+                        <p class="text-sm text-gray-400 font-light leading-relaxed">Hands-on experience in module development, code debugging, and quality assurance practices.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Professional <span class="text-primary">Experience</span></h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-dark-secondary border border-dark-tertiary rounded-lg p-8">
+                    <div class="flex flex-col md:flex-row md:items-start gap-6">
+                        <div class="md:w-1/3">
+                            <h3 class="text-xl font-semibold mb-2">Programming Intern</h3>
+                            <p class="text-primary font-medium mb-2">TechSolution Inc.</p>
+                            <p class="text-sm text-gray-400 mb-4">March - May 2023 • Butuan City</p>
+                        </div>
+                        
+                        <div class="md:w-2/3">
+                            <h4 class="font-semibold mb-4 text-primary">Key Project: Module Development Assignment</h4>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <h5 class="font-medium mb-2">🎯 Situation & Task</h5>
+                                    <p class="text-gray-400 text-sm">Assigned to develop a critical software module for the company's main application, requiring independent problem-solving and adherence to strict quality standards.</p>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="font-medium mb-2">⚡ Action</h5>
+                                    <p class="text-gray-400 text-sm">Implemented comprehensive debugging processes, developed clean and efficient code, and conducted thorough quality assurance testing to ensure module reliability.</p>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="font-medium mb-2">🏆 Result</h5>
+                                    <p class="text-gray-400 text-sm">Successfully delivered a fully functional module that met all requirements, demonstrating strong independent development capabilities and attention to detail.</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 flex flex-wrap gap-2">
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs">Code Debugging</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs">Independent Development</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs">Quality Assurance</span>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs">Module Development</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 px-6 bg-dark-secondary">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Skills & <span class="text-primary">Expertise</span></h2>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <!-- Technical Skills -->
+                    <div class="bg-dark border border-dark-tertiary rounded-lg p-6">
+                        <h3 class="text-xl font-semibold mb-6 text-primary">Technical Skills</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-sm font-light">Python</span>
+                                    <span class="text-xs text-gray-500">Advanced</span>
+                                </div>
+                                <div class="bg-dark-tertiary/50 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-primary to-primary/80 h-1 rounded-full skill-bar" style="--target-width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-sm font-light">HTML/CSS</span>
+                                    <span class="text-xs text-gray-500">Advanced</span>
+                                </div>
+                                <div class="bg-dark-tertiary/50 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-primary to-primary/80 h-1 rounded-full skill-bar" style="--target-width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-sm font-light">JavaScript</span>
+                                    <span class="text-xs text-gray-500">Intermediate</span>
+                                </div>
+                                <div class="bg-dark-tertiary/50 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-primary to-primary/80 h-1 rounded-full skill-bar" style="--target-width: 70%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-sm font-light">SQL</span>
+                                    <span class="text-xs text-gray-500">Intermediate</span>
+                                </div>
+                                <div class="bg-dark-tertiary/50 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-primary to-primary/80 h-1 rounded-full skill-bar" style="--target-width: 75%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-sm font-light">Git</span>
+                                    <span class="text-xs text-gray-500">Intermediate</span>
+                                </div>
+                                <div class="bg-dark-tertiary/50 rounded-full h-1">
+                                    <div class="bg-gradient-to-r from-primary to-primary/80 h-1 rounded-full skill-bar" style="--target-width: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Collaboration -->
+                    <div class="bg-dark border border-dark-tertiary rounded-lg p-6">
+                        <h3 class="text-xl font-semibold mb-6 text-primary">Collaboration</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3">
+                                <div class="bg-primary/20 p-2 rounded">
+                                    <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M16,4C18.11,4 20,5.89 20,8A4,4 0 0,1 16,12C15.87,12 15.76,12 15.65,12L19.64,16H17.23L13.24,12C10.39,12 8,9.61 8,6.67V6.5C8,5.67 8.67,5 9.5,5H10.5C11.33,5 12,5.67 12,6.5V8.5H16M16,6A2,2 0 0,0 14,8A2,2 0 0,0 16,10A2,2 0 0,0 18,8A2,2 0 0,0 16,6M7,13A4,4 0 0,1 11,17A4,4 0 0,1 7,21A4,4 0 0,1 3,17A4,4 0 0,1 7,13M7,15A2,2 0 0,0 5,17A2,2 0 0,0 7,19A2,2 0 0,0 9,17A2,2 0 0,0 7,15Z"/>
+                                    </svg>
+                                </div>
+                                <span class="text-sm">Team Collaboration</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="bg-primary/20 p-2 rounded">
+                                    <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"/>
+                                    </svg>
+                                </div>
+                                <span class="text-sm">Communication</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="bg-primary/20 p-2 rounded">
+                                    <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M9,10H7V12H9V10M13,10H11V12H13V10M17,10H15V12H17V10M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z"/>
+                                    </svg>
+                                </div>
+                                <span class="text-sm">Project Management</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="bg-primary/20 p-2 rounded">
+                                    <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z"/>
+                                    </svg>
+                                </div>
+                                <span class="text-sm">Problem Solving</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Languages -->
+                    <div class="bg-dark border border-dark-tertiary rounded-lg p-6">
+                        <h3 class="text-xl font-semibold mb-6 text-primary">Languages</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm">Filipino</span>
+                                <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs">Native</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm">English</span>
+                                <span class="bg-primary/20 text-primary px-2 py-1 rounded text-xs">Fluent</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Core Strengths Quote -->
+                <div class="text-center bg-dark border border-dark-tertiary rounded-lg p-8">
+                    <blockquote class="text-lg italic text-gray-300 mb-4">
+                        "Focused, dedicated, and detail-oriented approach to every project, 
+                        ensuring high-quality deliverables through continuous learning and professional growth."
+                    </blockquote>
+                    <div class="flex justify-center gap-4 flex-wrap">
+                        <span class="bg-primary/20 text-primary px-4 py-2 rounded-full text-sm">Attention to Detail</span>
+                        <span class="bg-primary/20 text-primary px-4 py-2 rounded-full text-sm">Continuous Learning</span>
+                        <span class="bg-primary/20 text-primary px-4 py-2 rounded-full text-sm">Quality Focus</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Featured <span class="text-primary">Projects</span></h2>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <!-- Project 1 -->
+                    <div class="bg-dark-secondary/20 border border-primary/5 rounded-2xl p-8 hover-lift hover-glow fade-in group">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 transition-colors">
+                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M3,3H21V21H3V3M13.5,12A1.5,1.5 0 0,1 12,10.5A1.5,1.5 0 0,1 13.5,9A1.5,1.5 0 0,1 15,10.5A1.5,1.5 0 0,1 13.5,12M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16Z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-light text-lg">Python Data Science Project</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 font-light leading-relaxed">Comprehensive data analysis and visualization project using Python, pandas, and matplotlib for business insights.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">Python</span>
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">Pandas</span>
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">Matplotlib</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500 font-light">Completed</span>
+                            <button onclick="viewProject('data-science')" class="text-primary hover:text-primary/80 text-sm font-light group-hover:translate-x-1 transition-transform">View Details →</button>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="bg-dark-secondary/20 border border-primary/5 rounded-2xl p-8 hover-lift hover-glow fade-in group">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 transition-colors">
+                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-light text-lg">Module Development Assignment</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 font-light leading-relaxed">Professional software module developed during internship at TechSolutions Inc., featuring robust error handling and testing.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">JavaScript</span>
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">Testing</span>
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">Debugging</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500 font-light">Production</span>
+                            <button onclick="viewProject('module-dev')" class="text-primary hover:text-primary/80 text-sm font-light group-hover:translate-x-1 transition-transform">View Details →</button>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="bg-dark-secondary/20 border border-primary/5 rounded-2xl p-8 hover-lift hover-glow fade-in group">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 transition-colors">
+                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-light text-lg">Academic BSIT Capstone</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 font-light leading-relaxed">Final year capstone project demonstrating full-stack development skills and database management expertise.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">Full-Stack</span>
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">Database</span>
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-light border border-primary/20">SQL</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500 font-light">Completed</span>
+                            <button onclick="viewProject('capstone')" class="text-primary hover:text-primary/80 text-sm font-light group-hover:translate-x-1 transition-transform">View Details →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="text-center bg-dark-secondary border border-dark-tertiary rounded-lg p-8">
+                    <h3 class="text-xl font-semibold mb-4">Interested in collaborating?</h3>
+                    <p class="text-gray-400 mb-6">I'm always excited to work on new projects and challenges. Let's discuss how we can work together!</p>
+                    <a href="#contact" class="bg-primary hover:bg-primary/80 px-6 py-3 rounded-lg transition-colors inline-block">
+                        Start a Conversation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-6 bg-dark-secondary">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Get In <span class="text-primary">Touch</span></h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <!-- Contact Info -->
+                    <div class="bg-dark border border-dark-tertiary rounded-lg p-8">
+                        <h3 class="text-xl font-semibold mb-6">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="bg-primary/20 p-3 rounded">
+                                    <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Email</p>
+                                    <a href="mailto:johnkeneth.diola@carsu.edu.ph" class="text-primary hover:text-primary/80">johnkeneth.diola@carsu.edu.ph</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="bg-primary/20 p-3 rounded">
+                                    <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Phone</p>
+                                    <a href="tel:+639812341572" class="text-primary hover:text-primary/80">(+63) 981 234 1572</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="bg-primary/20 p-3 rounded">
+                                    <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Location</p>
+                                    <p class="text-gray-400">Purok 4 Los Arcos, Prosperidad<br>Agusan del Sur, Philippines</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- References -->
+                    <div class="bg-dark border border-dark-tertiary rounded-lg p-8">
+                        <h3 class="text-xl font-semibold mb-6">Professional References</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-medium text-primary">Ms. Maria Santos</h4>
+                                <p class="text-sm text-gray-400">Supervisor, TechSolutions Inc.</p>
+                                <p class="text-sm text-gray-400">Internship Mentor</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium text-primary">Mr. Edwin Manuel Jarlata</h4>
+                                <p class="text-sm text-gray-400">Professor, Caraga State University</p>
+                                <p class="text-sm text-gray-400">Academic Advisor</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium text-primary">Ms. Anna Lopez</h4>
+                                <p class="text-sm text-gray-400">Faculty, Caraga State University</p>
+                                <p class="text-sm text-gray-400">Capstone Project Supervisor</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final CTA -->
+                <div class="text-center bg-dark border border-dark-tertiary rounded-lg p-8">
+                    <h3 class="text-xl font-semibold mb-4">Ready to collaborate?</h3>
+                    <p class="text-gray-400 mb-6">Whether you have a project in mind or just want to connect, I'd love to hear from you. Let's create something amazing together!</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="mailto:johnkeneth.diola@carsu.edu.ph" class="bg-primary hover:bg-primary/80 px-6 py-3 rounded-lg transition-colors">
+                            Send Email
+                        </a>
+                        <a href="https://drive.google.com/file/d/1RIXHq9LLxvBiOCc5kUqi9WS6UpSHGhxY/view?usp=sharing" 
+                           target="_blank" rel="noopener noreferrer"
+                           class="border border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-lg transition-colors">
+                            Download Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-dark-tertiary">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-400">&copy; 2025 John Keneth L. Diola. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('open');
+        }
+
+        // Project interaction
+        function viewProject(projectId) {
+            console.log(`Viewing project: ${projectId}`);
+            // Placeholder for future project detail functionality
+            alert(`Project details for ${projectId} would be displayed here. This is a placeholder for future functionality.`);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with animation classes
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Animate skill bars on scroll
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-bar');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            skillBars.forEach(bar => observer.observe(bar));
+        }
+
+        // Smooth scroll with offset for fixed header
+        function smoothScrollToSection(targetId) {
+            const target = document.querySelector(targetId);
+            if (target) {
+                const headerHeight = 80;
+                const targetPosition = target.offsetTop - headerHeight;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initScrollAnimations();
+            animateSkillBars();
+            
+            // Add stagger delay to fade-in elements
+            document.querySelectorAll('.fade-in').forEach((el, index) => {
+                el.style.transitionDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98267439733cfec1',t:'MTc1ODQyNTExMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
