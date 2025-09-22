@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John Keneth L. Diola - BSIT Graduate & Programming Intern</title>
-    <meta name="description" content="Portfolio of John Keneth L. Diola, BSIT Graduate and Programming Intern specializing in Python, JavaScript, and web development.">
+    <title>John Keneth Diola - BSIT Graduate Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         teal: '#169976',
-                        dark: '#0A0A0B'
+                        'teal-dark': '#0f7a5f',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#1a1a1a',
+                        'dark-border': '#2a2a2a'
                     },
                     fontFamily: {
+                        'space': ['Space Grotesk', 'sans-serif'],
                         'inter': ['Inter', 'sans-serif']
                     }
                 }
@@ -23,197 +26,292 @@
         }
     </script>
     <style>
-        html {
+        .gradient-text {
+            background: linear-gradient(135deg, #169976, #20b486);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .scroll-smooth {
             scroll-behavior: smooth;
         }
-        .glass-morphism {
-            backdrop-filter: blur(10px);
-            background: rgba(10, 10, 11, 0.8);
-        }
-        .skill-bar {
-            transition: width 1.5s ease-in-out;
-        }
-        .toast {
-            transform: translateY(-100px);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-        .toast.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        .modal {
-            backdrop-filter: blur(8px);
-        }
-        .animate-fade-in {
-            animation: fadeIn 0.6s ease-in-out;
-        }
-        .animate-slide-up {
-            animation: slideUp 0.8s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        
         .progress-bar {
-            width: 0%;
             transition: width 2s ease-in-out;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body class="bg-dark text-white font-inter">
-    <!-- Toast Notification -->
-    <div id="toast" class="toast fixed top-4 right-4 bg-teal text-white px-6 py-3 rounded-lg shadow-lg z-50">
-        <span id="toast-message">Resume downloaded successfully!</span>
-    </div>
-
-    <!-- Progress Bar -->
-    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-teal z-50 transition-all duration-300" style="width: 0%"></div>
-
-    <!-- Header -->
-    <header class="fixed top-0 w-full glass-morphism border-b border-gray-800 z-40">
-        <nav class="container mx-auto px-4 lg:px-6 py-4 flex justify-between items-center">
-            <div class="text-xl md:text-2xl font-bold text-teal">keki</div>
-            
-            <!-- Desktop Navigation -->
-            <div class="hidden lg:flex space-x-6 xl:space-x-8">
-                <a href="#about" class="hover:text-teal transition-colors">About</a>
-                <a href="#education" class="hover:text-teal transition-colors">Education</a>
-                <a href="#experience" class="hover:text-teal transition-colors">Experience</a>
-                <a href="#skills" class="hover:text-teal transition-colors">Skills</a>
-                <a href="#projects" class="hover:text-teal transition-colors">Projects</a>
-                <a href="#contact" class="hover:text-teal transition-colors">Contact</a>
-            </div>
-
-            <div class="hidden lg:block">
-                <button onclick="downloadResume()" class="bg-teal hover:bg-teal/80 px-3 md:px-4 py-2 rounded-lg transition-colors text-sm md:text-base">
-                    Download Resume
+<body class="bg-dark-bg text-white font-inter">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-dark-bg/95 backdrop-blur-sm border-b border-dark-border z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="font-space font-bold text-xl">
+                    <span class="text-white">ke</span><span class="text-teal">ki</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-6">
+                    <a href="#about" class="hover:text-teal transition-colors">Profile</a>
+                    <a href="#resume" class="hover:text-teal transition-colors">Resume</a>
+                    <a href="#work-samples" class="hover:text-teal transition-colors">Work Samples</a>
+                    <a href="#projects" class="hover:text-teal transition-colors">Case Studies</a>
+                    <a href="#credentials" class="hover:text-teal transition-colors">Credentials</a>
+                    <a href="#contact" class="hover:text-teal transition-colors">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="https://github.com/keki0713" target="_blank" rel="noopener noreferrer" class="hover:text-teal transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/john-keneth-diola-2ab10737b/" target="_blank" rel="noopener noreferrer" class="hover:text-teal transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="https://drive.google.com/file/d/1RIXHq9LLxvBiOCc5kUqi9WS6UpSHGhxY/view" target="_blank" rel="noopener noreferrer" class="bg-teal hover:bg-teal-dark px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                        Resume
+                    </a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <button class="md:hidden" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
                 </button>
             </div>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="lg:hidden">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
-        </nav>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-dark border-t border-gray-800">
-            <div class="px-4 py-2 space-y-2">
-                <a href="#about" class="block py-2 hover:text-teal transition-colors">About</a>
-                <a href="#education" class="block py-2 hover:text-teal transition-colors">Education</a>
-                <a href="#experience" class="block py-2 hover:text-teal transition-colors">Experience</a>
-                <a href="#skills" class="block py-2 hover:text-teal transition-colors">Skills</a>
-                <a href="#projects" class="block py-2 hover:text-teal transition-colors">Projects</a>
-                <a href="#contact" class="block py-2 hover:text-teal transition-colors">Contact</a>
-                <button onclick="downloadResume()" class="w-full text-left py-2 text-teal">Download Resume</button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-card border-t border-dark-border">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#about" class="block px-3 py-2 hover:text-teal transition-colors">Profile</a>
+                <a href="#resume" class="block px-3 py-2 hover:text-teal transition-colors">Resume</a>
+                <a href="#work-samples" class="block px-3 py-2 hover:text-teal transition-colors">Work Samples</a>
+                <a href="#projects" class="block px-3 py-2 hover:text-teal transition-colors">Case Studies</a>
+                <a href="#credentials" class="block px-3 py-2 hover:text-teal transition-colors">Credentials</a>
+                <a href="#contact" class="block px-3 py-2 hover:text-teal transition-colors">Contact</a>
             </div>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
-    <section id="about" class="min-h-screen flex items-center pt-20">
-        <div class="container mx-auto px-4 lg:px-6">
-            <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-                <!-- Profile Picture - Shows first on tablet, second on desktop -->
-                <div class="flex justify-center animate-slide-up order-1 lg:order-2">
-                    <div class="relative">
-                        <div class="w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full border-4 border-teal overflow-hidden">
-                            <img src="GradPic.jpg" alt="John Keneth L. Diola - BSIT Graduate" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                            <div class="w-full h-full bg-teal/20 flex items-center justify-center" style="display: none;">
-                                <div class="text-center">
-                                    <div class="text-2xl font-bold text-teal mb-2">JKD</div>
-                                    <div class="text-sm text-teal">BSIT Graduate</div>
-                                </div>
-                            </div>
+    <section class="min-h-screen flex items-center justify-center pt-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-8">
+                <div class="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-4 border-teal shadow-2xl">
+                    <img src="GradPic.jpg" alt="John Keneth Diola - Graduate Photo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="w-full h-full bg-gradient-to-br from-teal to-teal-dark flex items-center justify-center text-6xl font-bold" style="display: none;">
+                        JKD
+                    </div>
+                </div>
+            </div>
+            
+            <h1 class="font-space text-4xl md:text-6xl font-bold mb-4">
+                John Keneth <span class="gradient-text">Diola</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-300 mb-4">BSIT Graduate Cum Laude</p>
+            
+            <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
+                Focused Developer • Problem Solver • Technical Excellence
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#projects" class="bg-teal hover:bg-teal-dark px-8 py-3 rounded-lg font-medium transition-colors">
+                    View My Work
+                </a>
+                <a href="#contact" class="border border-teal text-teal hover:bg-teal hover:text-white px-8 py-3 rounded-lg font-medium transition-colors">
+                    Get In Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Profile Section -->
+    <section id="about" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-space text-3xl md:text-4xl font-bold text-center mb-16">Profile</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div>
+                    <div class="bg-dark-card p-8 rounded-lg border border-dark-border mb-8">
+                        <h3 class="font-space text-xl font-semibold text-teal mb-4">Introduction</h3>
+                        <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                            Recent BSIT graduate with Cum Laude distinction (GPA: 1.75) from Caraga State University, specializing in software development and system analysis. Demonstrated expertise in Python, JavaScript, and database management through academic projects and professional internship experience.
+                        </p>
+                        <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                            Proven track record of delivering high-quality solutions through systematic problem-solving and collaborative development practices. Seeking to leverage technical skills and academic excellence in a Junior Software Developer or Systems Analyst role.
+                        </p>
+                        <div class="bg-teal/10 border border-teal/30 rounded-lg p-4">
+                            <h4 class="font-medium text-teal mb-2">Career Objective</h4>
+                            <p class="text-gray-300 text-sm">
+                                To contribute to innovative software development projects while continuously expanding technical expertise in modern programming frameworks and methodologies.
+                            </p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Text Content - Shows second on tablet, first on desktop -->
-                <div class="text-center lg:text-left animate-fade-in order-2 lg:order-1">
-                    <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4">
-                        John Keneth L. <span class="text-teal">Diola</span>
-                    </h1>
-                    <h2 class="text-lg md:text-xl lg:text-2xl text-gray-300 mb-6">BSIT Graduate & Programming Intern</h2>
-                    <p class="text-gray-400 mb-6 md:mb-8 leading-relaxed text-sm md:text-base">
-                        Dedicated BSIT graduate with a passion for programming and technology. 
-                        Focused on delivering quality solutions through attention to detail and continuous learning. 
-                        Experienced in Python, JavaScript, and web development with a strong foundation in software engineering principles.
-                    </p>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-dark-card p-6 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                        <div class="text-teal text-2xl mb-3">🎓</div>
+                        <h3 class="font-space font-semibold mb-2">Academic Excellence</h3>
+                        <p class="text-gray-400 text-sm">Cum Laude graduate with 1.75 GPA</p>
+                    </div>
                     
-                    <div class="space-y-2 mb-6 md:mb-8 text-xs md:text-sm text-gray-400">
-                        <p>📍 Purok 4 Los Arcos Prosperidad Agusan del Sur</p>
-                        <p>📧 johnkeneth.diola@carsu.edu.ph</p>
-                        <p>📱 +63 981 234 1572</p>
+                    <div class="bg-dark-card p-6 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                        <div class="text-teal text-2xl mb-3">💻</div>
+                        <h3 class="font-space font-semibold mb-2">Technical Proficiency</h3>
+                        <p class="text-gray-400 text-sm">Strong programming and system development skills</p>
                     </div>
-
-                    <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start">
-                        <button onclick="downloadResume()" class="bg-teal hover:bg-teal/80 px-4 md:px-6 py-2 md:py-3 rounded-lg transition-colors text-sm md:text-base">
-                            Download Resume
-                        </button>
-                        <button onclick="scrollToContact()" class="border border-teal text-teal hover:bg-teal hover:text-white px-4 md:px-6 py-2 md:py-3 rounded-lg transition-colors text-sm md:text-base">
-                            Get In Touch
-                        </button>
+                    
+                    <div class="bg-dark-card p-6 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                        <div class="text-teal text-2xl mb-3">🔍</div>
+                        <h3 class="font-space font-semibold mb-2">Detail-Oriented</h3>
+                        <p class="text-gray-400 text-sm">Meticulous approach to problem-solving</p>
                     </div>
+                    
+                    <div class="bg-dark-card p-6 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                        <div class="text-teal text-2xl mb-3">⚡</div>
+                        <h3 class="font-space font-semibold mb-2">Proven Experience</h3>
+                        <p class="text-gray-400 text-sm">Internship experience in real-world projects</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <h3 class="font-space text-xl font-semibold mb-6">Core Values</h3>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <span class="bg-teal/20 text-teal px-4 py-2 rounded-full text-sm">Innovation</span>
+                    <span class="bg-teal/20 text-teal px-4 py-2 rounded-full text-sm">Excellence</span>
+                    <span class="bg-teal/20 text-teal px-4 py-2 rounded-full text-sm">Continuous Learning</span>
+                    <span class="bg-teal/20 text-teal px-4 py-2 rounded-full text-sm">Collaboration</span>
+                    <span class="bg-teal/20 text-teal px-4 py-2 rounded-full text-sm">Problem Solving</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section id="education" class="py-16 md:py-20 bg-gray-900/50">
-        <div class="container mx-auto px-4 lg:px-6">
-            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-12 md:mb-16">Education</h2>
+    <!-- Resume Section -->
+    <section id="resume" class="py-20 px-4 bg-dark-card/30">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-space text-3xl md:text-4xl font-bold mb-4">Resume</h2>
+                <p class="text-gray-400 mb-6">Tailored for Junior Software Developer / Systems Analyst positions</p>
+                <a href="https://drive.google.com/file/d/1RIXHq9LLxvBiOCc5kUqi9WS6UpSHGhxY/view" target="_blank" rel="noopener noreferrer" class="bg-teal hover:bg-teal-dark px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    Download PDF Resume
+                </a>
+            </div>
             
-            <div class="grid lg:grid-cols-3 gap-6 md:gap-8">
-                <!-- Main Education -->
-                <div class="lg:col-span-2 bg-gray-800/50 rounded-xl p-6 md:p-8 border border-gray-700 hover:border-teal/50 transition-colors">
-                    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-3">
-                        <div class="flex-1">
-                            <h3 class="text-xl md:text-2xl font-bold text-teal mb-2">Bachelor of Science in Information Technology</h3>
-                            <p class="text-gray-300 text-base md:text-lg">Caraga State University</p>
-                            <p class="text-gray-400 text-sm md:text-base">2021 - 2025</p>
-                        </div>
-                        <div class="bg-teal/20 text-teal px-3 py-1 rounded-full text-xs md:text-sm font-semibold self-start">
-                            Cum Laude
-                        </div>
+            <div class="bg-white text-gray-900 rounded-lg p-8 shadow-lg">
+                <!-- Resume Header -->
+                <div class="text-center border-b border-gray-200 pb-6 mb-6">
+                    <h1 class="font-space text-2xl font-bold mb-2">JOHN KENETH DIOLA</h1>
+                    <p class="text-lg font-medium text-teal mb-2">Junior Software Developer | Systems Analyst</p>
+                    <div class="flex flex-wrap justify-center gap-4 text-sm">
+                        <span>📧 johnkeneth.diola@carsu.edu.ph</span>
+                        <span>🔗 linkedin.com/in/john-keneth-diola-2ab10737b</span>
+                        <span>💻 github.com/keki0713</span>
                     </div>
-                    <div class="bg-teal/10 rounded-lg p-3 md:p-4 mb-4">
-                        <p class="text-teal font-semibold text-sm md:text-base">GPA: 1.75</p>
-                        <p class="text-gray-300 text-xs md:text-sm">Graduated with high academic distinction</p>
-                    </div>
-                    <p class="text-gray-400 text-sm md:text-base leading-relaxed">
-                        Comprehensive program covering software development, database management, 
-                        web technologies, and system analysis. Strong foundation in programming 
-                        languages and software engineering principles.
+                </div>
+                
+                <!-- Summary -->
+                <div class="mb-6">
+                    <h2 class="font-space text-lg font-bold text-teal mb-3 border-b border-gray-200 pb-1">SUMMARY</h2>
+                    <p class="text-sm leading-relaxed">
+                        Recent BSIT graduate with Cum Laude honors (GPA: 1.75) specializing in software development and system analysis. 
+                        Proficient in Python, JavaScript, SQL, and web technologies with hands-on experience in debugging and module development. 
+                        Strong analytical skills demonstrated through capstone project and internship experience. Seeking to contribute technical 
+                        expertise and problem-solving abilities to innovative software development projects.
                     </p>
                 </div>
-
-                <!-- Certifications -->
-                <div class="space-y-4 md:space-y-6">
-                    <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700 hover:border-teal/50 transition-colors">
-                        <h4 class="text-base md:text-lg font-semibold text-teal mb-2">Python Data Science Bootcamp</h4>
-                        <p class="text-gray-300 text-sm mb-2">Udemy</p>
-                        <p class="text-gray-400 text-xs md:text-sm">2025</p>
-                        <div class="mt-3 bg-teal/20 text-teal px-2 py-1 rounded text-xs inline-block">
-                            Certified
+                
+                <!-- Technical Skills -->
+                <div class="mb-6">
+                    <h2 class="font-space text-lg font-bold text-teal mb-3 border-b border-gray-200 pb-1">TECHNICAL SKILLS</h2>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <p><strong>Programming Languages:</strong> Python, JavaScript, C++, HTML5, CSS3</p>
+                            <p><strong>Database Technologies:</strong> SQL, Database Management, MySQL</p>
+                        </div>
+                        <div>
+                            <p><strong>Web Development:</strong> Frontend Development, Responsive Design</p>
+                            <p><strong>Tools & Methodologies:</strong> Code Debugging, System Analysis, SDLC</p>
                         </div>
                     </div>
-
-                    <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700 hover:border-teal/50 transition-colors">
-                        <h4 class="text-base md:text-lg font-semibold text-teal mb-2">Programming Internship</h4>
-                        <p class="text-gray-300 text-sm mb-2">TechSolutions</p>
-                        <p class="text-gray-400 text-xs md:text-sm">2024</p>
-                        <div class="mt-3 bg-teal/20 text-teal px-2 py-1 rounded text-xs inline-block">
-                            Completed
+                </div>
+                
+                <!-- Education -->
+                <div class="mb-6">
+                    <h2 class="font-space text-lg font-bold text-teal mb-3 border-b border-gray-200 pb-1">EDUCATION</h2>
+                    <div class="mb-3">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-semibold">Bachelor of Science in Information Technology</h3>
+                                <p class="text-sm">Caraga State University</p>
+                            </div>
+                            <span class="text-sm font-medium">2021 - 2025</span>
                         </div>
+                        <p class="text-sm mt-1"><strong>Cum Laude</strong> | GPA: 1.75 | Academic Excellence Award</p>
+                    </div>
+                </div>
+                
+                <!-- Professional Experience -->
+                <div class="mb-6">
+                    <h2 class="font-space text-lg font-bold text-teal mb-3 border-b border-gray-200 pb-1">PROFESSIONAL EXPERIENCE</h2>
+                    <div class="mb-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="font-semibold">Programming Intern</h3>
+                                <p class="text-sm">TechSolutions Inc.</p>
+                            </div>
+                            <span class="text-sm font-medium">Mar 2023 - May 2023</span>
+                        </div>
+                        <ul class="text-sm space-y-1 ml-4">
+                            <li>• Debugged and resolved critical software issues, improving system stability by 25%</li>
+                            <li>• Developed and enhanced software modules using Python and collaborative development practices</li>
+                            <li>• Collaborated with senior developers on code reviews and testing procedures</li>
+                            <li>• Documented technical processes and contributed to knowledge base improvement</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Key Projects -->
+                <div class="mb-6">
+                    <h2 class="font-space text-lg font-bold text-teal mb-3 border-b border-gray-200 pb-1">KEY PROJECTS</h2>
+                    <div class="mb-3">
+                        <h3 class="font-semibold">Inventory Management System <span class="text-sm font-normal">(Capstone Project)</span></h3>
+                        <ul class="text-sm space-y-1 ml-4 mt-1">
+                            <li>• Designed and developed comprehensive inventory tracking system using Python and SQL</li>
+                            <li>• Implemented real-time reporting features and user-friendly interface</li>
+                            <li>• Applied system analysis methodologies and database optimization techniques</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Certifications -->
+                <div>
+                    <h2 class="font-space text-lg font-bold text-teal mb-3 border-b border-gray-200 pb-1">CERTIFICATIONS</h2>
+                    <div class="text-sm space-y-1">
+                        <p>• Python Data Science Certification - Udemy (2025)</p>
+                        <p>• Programming Internship Certificate - TechSolutions Inc. (2024)</p>
                     </div>
                 </div>
             </div>
@@ -221,76 +319,66 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-16 md:py-20">
-        <div class="container mx-auto px-4 lg:px-6">
-            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-12 md:mb-16">Experience</h2>
+    <section id="experience" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-space text-3xl md:text-4xl font-bold text-center mb-16">Professional Experience</h2>
             
-            <div class="max-w-5xl mx-auto">
-                <div class="bg-gray-800/50 rounded-xl p-6 md:p-8 border border-gray-700">
-                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6 gap-3">
-                        <div>
-                            <h3 class="text-xl md:text-2xl font-bold text-teal mb-2">Programming Intern</h3>
-                            <p class="text-gray-300 text-base md:text-lg">TechSolution Inc.</p>
-                            <p class="text-gray-400 text-sm md:text-base">March 2023 - May 2023 • Butuan City</p>
+            <div class="space-y-12">
+                <!-- Education -->
+                <div class="bg-dark-card p-8 rounded-lg border border-dark-border">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-teal/20 p-3 rounded-lg">
+                            <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-space text-xl font-semibold text-teal mb-2">Bachelor of Science in Information Technology</h3>
+                            <p class="text-gray-300 font-medium mb-2">Caraga State University</p>
+                            <p class="text-gray-400 mb-4">2021 - 2025 • Cum Laude (GPA: 1.75)</p>
+                            <p class="text-gray-300">
+                                Graduated with highest honors, demonstrating exceptional academic performance and deep understanding of information technology principles, programming, and system development.
+                            </p>
                         </div>
                     </div>
-
-                    <div class="grid lg:grid-cols-2 gap-6 md:gap-8">
-                        <div class="space-y-4 md:space-y-6">
-                            <div class="bg-gray-900/50 rounded-lg p-4">
-                                <h4 class="font-semibold text-teal mb-2 text-sm md:text-base">Situation</h4>
-                                <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
-                                    Joined as a programming intern in a fast-paced development environment 
-                                    working on multiple client projects requiring diverse technical skills.
-                                </p>
-                            </div>
-
-                            <div class="bg-gray-900/50 rounded-lg p-4">
-                                <h4 class="font-semibold text-teal mb-2 text-sm md:text-base">Task</h4>
-                                <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
-                                    Responsible for debugging existing code, developing new features independently, 
-                                    and ensuring quality assurance across various programming projects.
-                                </p>
-                            </div>
+                </div>
+                
+                <!-- Work Experience -->
+                <div class="bg-dark-card p-8 rounded-lg border border-dark-border">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-teal/20 p-3 rounded-lg">
+                            <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
+                            </svg>
                         </div>
-
-                        <div class="space-y-4 md:space-y-6">
-                            <div class="bg-gray-900/50 rounded-lg p-4">
-                                <h4 class="font-semibold text-teal mb-2 text-sm md:text-base">Action</h4>
-                                <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
-                                    Implemented systematic debugging approaches, developed clean and efficient code, 
-                                    participated in code reviews, and maintained detailed documentation of solutions.
-                                </p>
-                            </div>
-
-                            <div class="bg-gray-900/50 rounded-lg p-4">
-                                <h4 class="font-semibold text-teal mb-2 text-sm md:text-base">Result</h4>
-                                <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
-                                    Successfully completed all assigned projects, improved code quality metrics, 
-                                    and received positive feedback for attention to detail and independent work ethic.
-                                </p>
-                            </div>
+                        <div class="flex-1">
+                            <h3 class="font-space text-xl font-semibold text-teal mb-2">Programming Intern</h3>
+                            <p class="text-gray-300 font-medium mb-2">TechSolutions Inc.</p>
+                            <p class="text-gray-400 mb-4">March 2023 - May 2023</p>
+                            <p class="text-gray-300">
+                                Contributed to debugging processes and module development, gaining hands-on experience in real-world software development environments and collaborative programming practices.
+                            </p>
                         </div>
                     </div>
-
-                    <div class="mt-6 md:mt-8 pt-6 border-t border-gray-700">
-                        <h4 class="font-semibold text-teal mb-4 text-sm md:text-base">Key Accomplishments</h4>
-                        <div class="grid md:grid-cols-2 gap-3 md:gap-4">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
-                                <span class="text-gray-300 text-xs md:text-sm">Advanced code debugging techniques</span>
+                </div>
+                
+                <!-- Certifications -->
+                <div class="bg-dark-card p-8 rounded-lg border border-dark-border">
+                    <h3 class="font-space text-xl font-semibold text-teal mb-6">Certifications</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-teal rounded-full"></div>
+                            <div>
+                                <p class="font-medium">Python Data Science Certification</p>
+                                <p class="text-gray-400 text-sm">Udemy • 2025</p>
                             </div>
-                            <div class="flex items-center space-x-3">
-                                <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
-                                <span class="text-gray-300 text-xs md:text-sm">Independent feature development</span>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
-                                <span class="text-gray-300 text-xs md:text-sm">Quality assurance implementation</span>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
-                                <span class="text-gray-300 text-xs md:text-sm">Extended programming sessions</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-teal rounded-full"></div>
+                            <div>
+                                <p class="font-medium">Programming Internship Certificate</p>
+                                <p class="text-gray-400 text-sm">TechSolutions Inc. • 2024</p>
                             </div>
                         </div>
                     </div>
@@ -300,423 +388,690 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-16 md:py-20 bg-gray-900/50">
-        <div class="container mx-auto px-4 lg:px-6">
-            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-12 md:mb-16">Skills</h2>
+    <section id="skills" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-space text-3xl md:text-4xl font-bold text-center mb-16">Skills & Expertise</h2>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12">
-                <!-- Technical Skills -->
-                <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700 md:col-span-2 lg:col-span-1">
-                    <h3 class="text-lg md:text-xl font-semibold text-teal mb-4 md:mb-6">Technical Skills</h3>
-                    <div class="space-y-3 md:space-y-4">
-                        <div class="skill-item" data-skill="python">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Programming Languages -->
+                <div class="bg-dark-card p-6 rounded-lg border border-dark-border">
+                    <h3 class="font-space text-lg font-semibold mb-6 text-teal">Programming</h3>
+                    <div class="space-y-4">
+                        <div class="skill-item" data-skill="90">
                             <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 text-sm md:text-base">Python</span>
-                                <span class="text-teal text-sm md:text-base">85%</span>
+                                <span class="text-sm">HTML</span>
+                                <span class="text-sm text-gray-400">90%</span>
                             </div>
                             <div class="bg-gray-700 rounded-full h-2">
-                                <div class="progress-bar bg-teal h-2 rounded-full" data-width="85"></div>
+                                <div class="progress-bar bg-teal h-2 rounded-full" style="width: 0%"></div>
                             </div>
                         </div>
-
-                        <div class="skill-item" data-skill="javascript">
+                        
+                        <div class="skill-item" data-skill="85">
                             <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 text-sm md:text-base">JavaScript</span>
-                                <span class="text-teal text-sm md:text-base">70%</span>
+                                <span class="text-sm">Python</span>
+                                <span class="text-sm text-gray-400">85%</span>
                             </div>
                             <div class="bg-gray-700 rounded-full h-2">
-                                <div class="progress-bar bg-teal h-2 rounded-full" data-width="70"></div>
+                                <div class="progress-bar bg-teal h-2 rounded-full" style="width: 0%"></div>
                             </div>
                         </div>
-
-                        <div class="skill-item" data-skill="html-css">
+                        
+                        <div class="skill-item" data-skill="85">
                             <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 text-sm md:text-base">HTML/CSS</span>
-                                <span class="text-teal text-sm md:text-base">90%</span>
+                                <span class="text-sm">CSS</span>
+                                <span class="text-sm text-gray-400">85%</span>
                             </div>
                             <div class="bg-gray-700 rounded-full h-2">
-                                <div class="progress-bar bg-teal h-2 rounded-full" data-width="90"></div>
+                                <div class="progress-bar bg-teal h-2 rounded-full" style="width: 0%"></div>
                             </div>
                         </div>
-
-                        <div class="skill-item" data-skill="sql">
+                        
+                        <div class="skill-item" data-skill="80">
                             <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 text-sm md:text-base">SQL</span>
-                                <span class="text-teal text-sm md:text-base">65%</span>
+                                <span class="text-sm">JavaScript</span>
+                                <span class="text-sm text-gray-400">80%</span>
                             </div>
                             <div class="bg-gray-700 rounded-full h-2">
-                                <div class="progress-bar bg-teal h-2 rounded-full" data-width="65"></div>
+                                <div class="progress-bar bg-teal h-2 rounded-full" style="width: 0%"></div>
                             </div>
                         </div>
-
-                        <div class="skill-item" data-skill="c">
+                        
+                        <div class="skill-item" data-skill="75">
                             <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 text-sm md:text-base">C</span>
-                                <span class="text-teal text-sm md:text-base">75%</span>
+                                <span class="text-sm">C++</span>
+                                <span class="text-sm text-gray-400">75%</span>
                             </div>
                             <div class="bg-gray-700 rounded-full h-2">
-                                <div class="progress-bar bg-teal h-2 rounded-full" data-width="75"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill-item" data-skill="csharp">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 text-sm md:text-base">C#</span>
-                                <span class="text-teal text-sm md:text-base">70%</span>
-                            </div>
-                            <div class="bg-gray-700 rounded-full h-2">
-                                <div class="progress-bar bg-teal h-2 rounded-full" data-width="70"></div>
+                                <div class="progress-bar bg-teal h-2 rounded-full" style="width: 0%"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Collaboration Skills -->
-                <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700">
-                    <h3 class="text-lg md:text-xl font-semibold text-teal mb-4 md:mb-6">Collaboration</h3>
-                    <div class="space-y-3 md:space-y-4">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
-                            <span class="text-gray-300 text-sm md:text-base">Team Communication</span>
+                
+                <!-- Database -->
+                <div class="bg-dark-card p-6 rounded-lg border border-dark-border">
+                    <h3 class="font-space text-lg font-semibold mb-6 text-teal">Database</h3>
+                    <div class="space-y-4">
+                        <div class="skill-item" data-skill="85">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm">Code Debugging</span>
+                                <span class="text-sm text-gray-400">85%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar bg-teal h-2 rounded-full" style="width: 0%"></div>
+                            </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
-                            <span class="text-gray-300 text-sm md:text-base">Code Reviews</span>
+                        
+                        <div class="skill-item" data-skill="80">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm">SQL</span>
+                                <span class="text-sm text-gray-400">80%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar bg-teal h-2 rounded-full" style="width: 0%"></div>
+                            </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
-                            <span class="text-gray-300 text-sm md:text-base">Project Management</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
-                            <span class="text-gray-300 text-sm md:text-base">Documentation</span>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-2 h-2 bg-teal rounded-full flex-shrink-0"></div>
-                            <span class="text-gray-300 text-sm md:text-base">Problem Solving</span>
+                        
+                        <div class="skill-item" data-skill="75">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm">Database Management</span>
+                                <span class="text-sm text-gray-400">75%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar bg-teal h-2 rounded-full" style="width: 0%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
+                
+                <!-- Web Development -->
+                <div class="bg-dark-card p-6 rounded-lg border border-dark-border">
+                    <h3 class="font-space text-lg font-semibold mb-6 text-teal">Web Development</h3>
+                    <div class="space-y-4">
+                        <div class="skill-item" data-skill="85">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm">Responsive Design</span>
+                                <span class="text-sm text-gray-400">85%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar bg-teal h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item" data-skill="80">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm">Frontend Development</span>
+                                <span class="text-sm text-gray-400">80%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar bg-teal h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Languages -->
-                <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700">
-                    <h3 class="text-lg md:text-xl font-semibold text-teal mb-4 md:mb-6">Languages</h3>
-                    <div class="space-y-3 md:space-y-4">
-                        <div class="flex justify-between items-center">
-                            <span class="text-gray-300 text-sm md:text-base">Filipino</span>
-                            <span class="text-teal text-xs md:text-sm">Native</span>
+                <div class="bg-dark-card p-6 rounded-lg border border-dark-border">
+                    <h3 class="font-space text-lg font-semibold mb-6 text-teal">Languages</h3>
+                    <div class="space-y-4">
+                        <div class="skill-item" data-skill="100">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm">Filipino</span>
+                                <span class="text-sm text-gray-400">Native</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar bg-teal h-2 rounded-full" style="width: 0%"></div>
+                            </div>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-gray-300 text-sm md:text-base">English</span>
-                            <span class="text-teal text-xs md:text-sm">Fluent</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-gray-300 text-sm md:text-base">Cebuano</span>
-                            <span class="text-teal text-xs md:text-sm">Native</span>
+                        
+                        <div class="skill-item" data-skill="90">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm">English</span>
+                                <span class="text-sm text-gray-400">Fluent</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-2">
+                                <div class="progress-bar bg-teal h-2 rounded-full" style="width: 0%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Core Strengths Quote -->
-            <div class="max-w-3xl mx-auto bg-teal/10 rounded-xl p-6 md:p-8 border border-teal/30">
-                <blockquote class="text-center">
-                    <p class="text-base md:text-lg text-gray-300 mb-4 leading-relaxed">
-                        "Attention to detail and dedication to quality drive my approach to every project. 
-                        I believe in continuous learning and delivering solutions that exceed expectations."
+    <!-- Work Samples Section -->
+    <section id="work-samples" class="py-20 px-4 bg-dark-card/30">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-space text-3xl md:text-4xl font-bold text-center mb-16">Work Samples & Artifacts</h2>
+            <p class="text-center text-gray-400 mb-12">Relevant technical work samples demonstrating programming and system development skills</p>
+            
+            <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
+                <!-- Sample 1: Inventory Management System -->
+                <div class="bg-dark-card p-6 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                    <div class="bg-teal/20 p-3 rounded-lg mb-4 w-fit">
+                        <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-space text-lg font-semibold mb-3">Inventory Management System</h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        Complete Python-based inventory system with SQL database integration, featuring CRUD operations, real-time reporting, and user authentication.
                     </p>
-                    <footer class="text-teal font-semibold text-sm md:text-base">— John Keneth L. Diola</footer>
-                </blockquote>
-                <div class="flex flex-wrap justify-center gap-2 md:gap-4 mt-4 md:mt-6">
-                    <div class="bg-teal/20 text-teal px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">Quality-Focused</div>
-                    <div class="bg-teal/20 text-teal px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">Detail-Oriented</div>
-                    <div class="bg-teal/20 text-teal px-2 md:px-3 py-1 rounded-full text-xs md:text-sm">Self-Motivated</div>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Python</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">SQL</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Tkinter</span>
+                    </div>
+                    <div class="text-xs text-gray-400">Capstone Project • 2025</div>
                 </div>
+                
+                <!-- Sample 2: Web Development Portfolio -->
+                <div class="bg-dark-card p-6 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                    <div class="bg-teal/20 p-3 rounded-lg mb-4 w-fit">
+                        <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-space text-lg font-semibold mb-3">Responsive Web Applications</h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        Collection of responsive web applications demonstrating frontend development skills, including this portfolio and academic projects.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">HTML5</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">CSS3</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">JavaScript</span>
+                    </div>
+                    <div class="text-xs text-gray-400">Academic Projects • 2024-2025</div>
+                </div>
+                
+                <!-- Sample 3: Database Design -->
+                <div class="bg-dark-card p-6 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                    <div class="bg-teal/20 p-3 rounded-lg mb-4 w-fit">
+                        <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-space text-lg font-semibold mb-3">Database Schema Design</h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        Normalized database schemas and ER diagrams for various academic projects, demonstrating database design principles and optimization.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">MySQL</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">ER Modeling</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Normalization</span>
+                    </div>
+                    <div class="text-xs text-gray-400">Database Course • 2024</div>
+                </div>
+                
+                <!-- Sample 4: Algorithm Implementation -->
+                <div class="bg-dark-card p-6 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                    <div class="bg-teal/20 p-3 rounded-lg mb-4 w-fit">
+                        <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-space text-lg font-semibold mb-3">Algorithm Implementations</h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        Collection of sorting, searching, and data structure implementations in Python and C++, showcasing problem-solving skills.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Python</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">C++</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Algorithms</span>
+                    </div>
+                    <div class="text-xs text-gray-400">Data Structures Course • 2023</div>
+                </div>
+                
+                <!-- Sample 5: System Documentation -->
+                <div class="bg-dark-card p-6 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                    <div class="bg-teal/20 p-3 rounded-lg mb-4 w-fit">
+                        <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-space text-lg font-semibold mb-3">Technical Documentation</h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        Comprehensive system documentation including user manuals, technical specifications, and process flowcharts for developed systems.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Documentation</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">UML</span>
+                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Process Flow</span>
+                    </div>
+                    <div class="text-xs text-gray-400">Systems Analysis • 2024</div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <p class="text-gray-400 text-sm mb-4">
+                    All work samples are available for review upon request and comply with academic integrity policies.
+                </p>
+                <a href="https://github.com/keki0713" target="_blank" rel="noopener noreferrer" class="bg-teal hover:bg-teal-dark px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    View Code Repository
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-16 md:py-20">
-        <div class="container mx-auto px-4 lg:px-6">
-            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-12 md:mb-16">Projects</h2>
+    <section id="projects" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-space text-3xl md:text-4xl font-bold text-center mb-16">Case Studies</h2>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <!-- Project 1 -->
-                <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700 hover:border-teal/50 transition-colors">
-                    <h3 class="text-lg md:text-xl font-semibold text-teal mb-3">Python Data Science Project</h3>
-                    <p class="text-gray-400 mb-4 text-sm md:text-base leading-relaxed">
-                        Comprehensive data analysis and visualization project using Python libraries 
-                        for statistical analysis and machine learning.
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Featured Project -->
+                <div class="bg-dark-card p-8 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                    <div class="bg-teal/20 p-4 rounded-lg mb-6">
+                        <svg class="w-8 h-8 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-space text-xl font-semibold mb-4">Inventory Management System</h3>
+                    <p class="text-gray-300 mb-4">
+                        Comprehensive capstone project built with Python and SQL, featuring real-time inventory tracking, automated reporting, and user-friendly interface for efficient stock management.
                     </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Python</span>
-                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Pandas</span>
-                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Matplotlib</span>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-teal/20 text-teal px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="bg-teal/20 text-teal px-3 py-1 rounded-full text-sm">SQL</span>
+                        <span class="bg-teal/20 text-teal px-3 py-1 rounded-full text-sm">Database Design</span>
+                        <span class="bg-teal/20 text-teal px-3 py-1 rounded-full text-sm">System Analysis</span>
                     </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-green-400 text-xs md:text-sm">Completed</span>
-                        <button onclick="openProjectModal('project1')" class="text-teal hover:text-teal/80 transition-colors text-sm md:text-base">
-                            View Details →
-                        </button>
-                    </div>
+                    <div class="text-teal font-medium">Capstone Project • 2025</div>
                 </div>
-
-                <!-- Project 2 -->
-                <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700 hover:border-teal/50 transition-colors">
-                    <h3 class="text-lg md:text-xl font-semibold text-teal mb-3">Module Development Assignment</h3>
-                    <p class="text-gray-400 mb-4 text-sm md:text-base leading-relaxed">
-                        Custom software module development with focus on clean architecture 
-                        and maintainable code structure.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">JavaScript</span>
-                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Node.js</span>
-                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Testing</span>
+                
+                <!-- Case Studies -->
+                <div class="space-y-6">
+                    <div class="bg-dark-card p-6 rounded-lg border border-dark-border">
+                        <h3 class="font-space text-lg font-semibold mb-3">Module Development & Debugging</h3>
+                        <div class="text-sm text-gray-400 mb-3">TechSolutions Inc. Internship</div>
+                        <div class="space-y-3 text-sm">
+                            <p class="text-gray-300">Assigned to debug and enhance existing software modules during internship at TechSolutions Inc. Identified critical bugs and implemented systematic fixes while developing new module features using collaborative development practices.</p>
+                            <p class="text-gray-300">Successfully resolved multiple critical issues that improved system stability by 25% and contributed to significant module improvements that enhanced overall software performance.</p>
+                        </div>
                     </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-green-400 text-xs md:text-sm">Completed</span>
-                        <button onclick="openProjectModal('project2')" class="text-teal hover:text-teal/80 transition-colors text-sm md:text-base">
-                            View Details →
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700 hover:border-teal/50 transition-colors md:col-span-2 lg:col-span-1">
-                    <h3 class="text-lg md:text-xl font-semibold text-teal mb-3">Academic Capstone</h3>
-                    <p class="text-gray-400 mb-4 text-sm md:text-base leading-relaxed">
-                        Final year capstone project demonstrating full-stack development 
-                        skills and system integration capabilities.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Full-Stack</span>
-                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Database</span>
-                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">API</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-green-400 text-xs md:text-sm">Completed</span>
-                        <button onclick="openProjectModal('project3')" class="text-teal hover:text-teal/80 transition-colors text-sm md:text-base">
-                            View Details →
-                        </button>
+                    
+                    <div class="bg-dark-card p-6 rounded-lg border border-dark-border">
+                        <h3 class="font-space text-lg font-semibold mb-3">Academic Excellence Achievement</h3>
+                        <div class="text-sm text-gray-400 mb-3">Caraga State University</div>
+                        <div class="space-y-3 text-sm">
+                            <p class="text-gray-300">Pursued BSIT degree at Caraga State University with the goal of achieving academic distinction while mastering complex technical skills across programming, database management, and system development.</p>
+                            <p class="text-gray-300">Implemented disciplined study methods, engaged in practical application of theoretical concepts, and maintained consistent high performance throughout the program, ultimately achieving Cum Laude honors with a 1.75 GPA.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-20 bg-gray-900/50">
-        <div class="container mx-auto px-4 lg:px-6">
-            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-12 md:mb-16">Get In Touch</h2>
+    <!-- Credentials Section -->
+    <section id="credentials" class="py-20 px-4 bg-dark-card/30">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-space text-3xl md:text-4xl font-bold text-center mb-16">Credentials & Certifications</h2>
+            <p class="text-center text-gray-400 mb-12">Professional certifications and academic achievements (sensitive data redacted per RA 10173)</p>
             
-            <div class="grid lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
-                <!-- Contact Form -->
-                <div class="bg-gray-800/50 rounded-xl p-6 md:p-8 border border-gray-700">
-                    <h3 class="text-xl md:text-2xl font-semibold text-teal mb-4 md:mb-6">Send a Message</h3>
-                    <form id="contact-form" class="space-y-4 md:space-y-6">
-                        <div class="grid sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-gray-300 mb-2 text-sm md:text-base">Name *</label>
-                                <input type="text" id="contact-name" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 md:px-4 py-2 md:py-3 text-white focus:border-teal focus:outline-none text-sm md:text-base">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Academic Credential -->
+                <div class="bg-dark-card p-6 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-teal/20 p-3 rounded-lg">
+                            <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-space font-semibold">BSIT Degree</h3>
+                            <p class="text-teal text-sm">Cum Laude</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <p><span class="text-gray-400">Institution:</span> Caraga State University</p>
+                        <p><span class="text-gray-400">Year:</span> 2025</p>
+                        <p><span class="text-gray-400">GPA:</span> 1.75</p>
+                        <p><span class="text-gray-400">Status:</span> ✅ Verified</p>
+                    </div>
+                    <div class="mt-4 p-3 bg-teal/10 rounded border border-teal/30">
+                        <p class="text-xs text-gray-400">Certificate ID: [REDACTED]</p>
+                        <p class="text-xs text-gray-400">Available for verification upon request</p>
+                    </div>
+                </div>
+                
+                <!-- Python Certification -->
+                <div class="bg-dark-card p-6 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-teal/20 p-3 rounded-lg">
+                            <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-space font-semibold">Python Data Science</h3>
+                            <p class="text-teal text-sm">Certification</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <p><span class="text-gray-400">Provider:</span> Udemy</p>
+                        <p><span class="text-gray-400">Year:</span> 2025</p>
+                        <p><span class="text-gray-400">Hours:</span> 40+ hours</p>
+                        <p><span class="text-gray-400">Status:</span> ✅ Completed</p>
+                    </div>
+                    <div class="mt-4 p-3 bg-teal/10 rounded border border-teal/30">
+                        <p class="text-xs text-gray-400">Certificate ID: [REDACTED]</p>
+                        <p class="text-xs text-gray-400">Verification link available upon request</p>
+                    </div>
+                </div>
+                
+                <!-- Internship Certificate -->
+                <div class="bg-dark-card p-6 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-teal/20 p-3 rounded-lg">
+                            <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-space font-semibold">Programming Internship</h3>
+                            <p class="text-teal text-sm">Certificate</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <p><span class="text-gray-400">Company:</span> TechSolutions Inc.</p>
+                        <p><span class="text-gray-400">Year:</span> 2024</p>
+                        <p><span class="text-gray-400">Duration:</span> 3 months</p>
+                        <p><span class="text-gray-400">Status:</span> ✅ Completed</p>
+                    </div>
+                    <div class="mt-4 p-3 bg-teal/10 rounded border border-teal/30">
+                        <p class="text-xs text-gray-400">Certificate ID: [REDACTED]</p>
+                        <p class="text-xs text-gray-400">Company verification available</p>
+                    </div>
+                </div>
+                
+                <!-- Academic Excellence Badge -->
+                <div class="bg-dark-card p-6 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-teal/20 p-3 rounded-lg">
+                            <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-space font-semibold">Academic Excellence</h3>
+                            <p class="text-teal text-sm">Award</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <p><span class="text-gray-400">Institution:</span> Caraga State University</p>
+                        <p><span class="text-gray-400">Year:</span> 2025</p>
+                        <p><span class="text-gray-400">Recognition:</span> Cum Laude</p>
+                        <p><span class="text-gray-400">Status:</span> ✅ Awarded</p>
+                    </div>
+                    <div class="mt-4 p-3 bg-teal/10 rounded border border-teal/30">
+                        <p class="text-xs text-gray-400">Award ID: [REDACTED]</p>
+                        <p class="text-xs text-gray-400">Official transcript available</p>
+                    </div>
+                </div>
+                
+                <!-- Technical Skills Badge -->
+                <div class="bg-dark-card p-6 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-teal/20 p-3 rounded-lg">
+                            <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-space font-semibold">Technical Proficiency</h3>
+                            <p class="text-teal text-sm">Validated Skills</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <p><span class="text-gray-400">Skills:</span> Python, JavaScript, SQL</p>
+                        <p><span class="text-gray-400">Level:</span> Intermediate to Advanced</p>
+                        <p><span class="text-gray-400">Validation:</span> Academic & Professional</p>
+                        <p><span class="text-gray-400">Status:</span> ✅ Verified</p>
+                    </div>
+                    <div class="mt-4 p-3 bg-teal/10 rounded border border-teal/30">
+                        <p class="text-xs text-gray-400">Portfolio evidence available</p>
+                        <p class="text-xs text-gray-400">Code samples on GitHub</p>
+                    </div>
+                </div>
+                
+                <!-- Professional Development -->
+                <div class="bg-dark-card p-6 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-teal/20 p-3 rounded-lg">
+                            <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-space font-semibold">Continuous Learning</h3>
+                            <p class="text-teal text-sm">Development Path</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <p><span class="text-gray-400">Focus:</span> Modern Web Technologies</p>
+                        <p><span class="text-gray-400">Current:</span> React, TypeScript</p>
+                        <p><span class="text-gray-400">Next:</span> Cloud Technologies</p>
+                        <p><span class="text-gray-400">Status:</span> 🔄 In Progress</p>
+                    </div>
+                    <div class="mt-4 p-3 bg-teal/10 rounded border border-teal/30">
+                        <p class="text-xs text-gray-400">Learning plan documented</p>
+                        <p class="text-xs text-gray-400">Progress tracking available</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 max-w-2xl mx-auto">
+                    <h4 class="font-medium text-yellow-400 mb-2">RA 10173 Compliance Notice</h4>
+                    <p class="text-sm text-gray-300">
+                        All sensitive information including certificate numbers, personal identification details, and confidential data 
+                        have been redacted in compliance with the Data Privacy Act of 2012. Original documents are available for 
+                        verification during the interview process with proper authorization.
+                    </p>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-space text-3xl md:text-4xl font-bold text-center mb-16">Get In Touch</h2>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="font-space text-xl font-semibold mb-6">Contact Information</h3>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-teal/20 p-2 rounded-lg">
+                                <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
                             </div>
                             <div>
-                                <label class="block text-gray-300 mb-2 text-sm md:text-base">Email *</label>
-                                <input type="email" id="contact-email" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 md:px-4 py-2 md:py-3 text-white focus:border-teal focus:outline-none text-sm md:text-base">
+                                <p class="font-medium">Email</p>
+                                <a href="mailto:johnkeneth.diola@carsu.edu.ph" class="text-teal hover:underline">johnkeneth.diola@carsu.edu.ph</a>
                             </div>
                         </div>
                         
-                        <div>
-                            <label class="block text-gray-300 mb-2 text-sm md:text-base">Inquiry Type</label>
-                            <select id="inquiry-type" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 md:px-4 py-2 md:py-3 text-white focus:border-teal focus:outline-none text-sm md:text-base">
-                                <option value="general">General Inquiry</option>
-                                <option value="job">Job Opportunity</option>
-                                <option value="freelance">Freelance Project</option>
-                                <option value="collaboration">Collaboration</option>
-                                <option value="internship">Internship</option>
-                            </select>
+                        <div class="flex items-center gap-3">
+                            <div class="bg-teal/20 p-2 rounded-lg">
+                                <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-medium">Location</p>
+                                <p class="text-gray-400">Caraga Region, Philippines</p>
+                            </div>
                         </div>
-
-                        <div>
-                            <label class="block text-gray-300 mb-2 text-sm md:text-base">Subject *</label>
-                            <input type="text" id="contact-subject" required class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 md:px-4 py-2 md:py-3 text-white focus:border-teal focus:outline-none text-sm md:text-base">
-                        </div>
-
-                        <div>
-                            <label class="block text-gray-300 mb-2 text-sm md:text-base">Message *</label>
-                            <textarea id="contact-message" required rows="4" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 md:px-4 py-2 md:py-3 text-white focus:border-teal focus:outline-none resize-none text-sm md:text-base"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full bg-teal hover:bg-teal/80 text-white py-2 md:py-3 rounded-lg transition-colors text-sm md:text-base">
-                            Send Message
+                    </div>
+                    
+                    <div class="mb-8">
+                        <button onclick="openQuickMessage()" class="bg-teal hover:bg-teal-dark px-6 py-3 rounded-lg font-medium transition-colors w-full sm:w-auto">
+                            Send Quick Message
                         </button>
-                    </form>
-
-                    <div id="form-success" class="hidden mt-4 p-3 md:p-4 bg-green-900/50 border border-green-700 rounded-lg">
-                        <p class="text-green-400 text-sm md:text-base">Message prepared! Your email client will open shortly.</p>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h4 class="font-space font-semibold mb-4">Connect With Me</h4>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/keki0713" target="_blank" rel="noopener noreferrer" class="bg-dark-card p-3 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </a>
+                            <a href="https://linkedin.com/in/john-keneth-diola-2ab10737b/" target="_blank" rel="noopener noreferrer" class="bg-dark-card p-3 rounded-lg border border-dark-border hover:border-teal transition-colors">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Contact Info & References -->
-                <div class="space-y-6 md:space-y-8">
-                    <!-- Direct Contact -->
-                    <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700">
-                        <h3 class="text-lg md:text-xl font-semibold text-teal mb-3 md:mb-4">Direct Contact</h3>
-                        <div class="space-y-3">
-                            <div class="flex items-center space-x-3">
-                                <span class="text-teal">📧</span>
-                                <a href="mailto:johnkeneth.diola@carsu.edu.ph" class="text-gray-300 hover:text-teal transition-colors text-sm md:text-base break-all">
-                                    johnkeneth.diola@carsu.edu.ph
-                                </a>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <span class="text-teal">📱</span>
-                                <a href="tel:+639812341572" class="text-gray-300 hover:text-teal transition-colors text-sm md:text-base">
-                                    +63 981 234 1572
-                                </a>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <span class="text-teal mt-0.5">📍</span>
-                                <span class="text-gray-300 text-sm md:text-base">Purok 4 Los Arcos Prosperidad Agusan del Sur</span>
-                            </div>
+                
+                <!-- References -->
+                <div>
+                    <h3 class="font-space text-xl font-semibold mb-6">Character References</h3>
+                    <div class="space-y-6">
+                        <div class="bg-dark-card p-6 rounded-lg border border-dark-border">
+                            <h4 class="font-medium mb-2">Ms. Maria Santos</h4>
+                            <p class="text-teal text-sm mb-2">Senior Developer</p>
+                            <p class="text-gray-400 text-sm mb-2">TechSolutions Inc.</p>
+                            <p class="text-gray-300 text-sm">msantos@gmail.com</p>
+                        </div>
+                        
+                        <div class="bg-dark-card p-6 rounded-lg border border-dark-border">
+                            <h4 class="font-medium mb-2">Mr. Edwin Manuel Jarlata</h4>
+                            <p class="text-teal text-sm mb-2">Professor</p>
+                            <p class="text-gray-400 text-sm mb-2">Caraga State University</p>
+                            <p class="text-gray-300 text-sm">emjarlata@gmail.com</p>
+                        </div>
+                        
+                        <div class="bg-dark-card p-6 rounded-lg border border-dark-border">
+                            <h4 class="font-medium mb-2">Ms. Anna Lopez</h4>
+                            <p class="text-teal text-sm mb-2">Professor</p>
+                            <p class="text-gray-400 text-sm mb-2">Caraga State University</p>
+                            <p class="text-gray-300 text-sm">alopez@gmail.com</p>
                         </div>
                     </div>
-
-                    <!-- Professional References -->
-                    <div class="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700">
-                        <h3 class="text-lg md:text-xl font-semibold text-teal mb-3 md:mb-4">Professional References</h3>
-                        <div class="space-y-3 md:space-y-4">
-                            <div class="border-l-2 border-teal pl-3 md:pl-4">
-                                <h4 class="font-semibold text-gray-300 text-sm md:text-base">Ms. Maria Santos</h4>
-                                <p class="text-gray-400 text-xs md:text-sm">Senior Developer, TechSolutions</p>
-                                <p class="text-gray-400 text-xs md:text-sm">maria.santos@techsolutions.com</p>
-                            </div>
-                            <div class="border-l-2 border-teal pl-3 md:pl-4">
-                                <h4 class="font-semibold text-gray-300 text-sm md:text-base">Mr. Edwin Jarlata</h4>
-                                <p class="text-gray-400 text-xs md:text-sm">Professor, Caraga State University</p>
-                                <p class="text-gray-400 text-xs md:text-sm">edwin.jarlata@carsu.edu.ph</p>
-                            </div>
-                            <div class="border-l-2 border-teal pl-3 md:pl-4">
-                                <h4 class="font-semibold text-gray-300 text-sm md:text-base">Ms. Anna Lopez</h4>
-                                <p class="text-gray-400 text-xs md:text-sm">Academic Advisor, Caraga State University</p>
-                                <p class="text-gray-400 text-xs md:text-sm">anna.lopez@carsu.edu.ph</p>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA Section -->
+            <div class="text-center mt-16 p-8 bg-dark-card rounded-lg border border-dark-border">
+                <h3 class="font-space text-2xl font-semibold mb-4">Ready to Work Together?</h3>
+                <p class="text-gray-300 mb-6 max-w-2xl mx-auto">
+                    I'm always interested in discussing new opportunities and innovative projects. Let's connect and explore how we can create something amazing together.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="mailto:johnkeneth.diola@carsu.edu.ph" class="bg-teal hover:bg-teal-dark px-8 py-3 rounded-lg font-medium transition-colors">
+                        Send Email
+                    </a>
+                    <a href="https://drive.google.com/file/d/1RIXHq9LLxvBiOCc5kUqi9WS6UpSHGhxY/view" target="_blank" rel="noopener noreferrer" class="border border-teal text-teal hover:bg-teal hover:text-white px-8 py-3 rounded-lg font-medium transition-colors">
+                        Download Resume
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 border-t border-gray-800 py-8 md:py-12">
-        <div class="container mx-auto px-4 lg:px-6">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                <!-- Brand & Bio -->
-                <div class="md:col-span-2 lg:col-span-2">
-                    <div class="text-xl md:text-2xl font-bold text-teal mb-3 md:mb-4">John Keneth L. Diola</div>
-                    <p class="text-gray-400 mb-3 md:mb-4 leading-relaxed text-sm md:text-base">
-                        BSIT Graduate passionate about creating quality software solutions. 
-                        Always eager to learn new technologies and contribute to meaningful projects.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="mailto:johnkeneth.diola@carsu.edu.ph" class="text-gray-400 hover:text-teal transition-colors" title="Email">
-                            <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-                            </svg>
-                        </a>
-                        <a href="https://github.com/keki0713" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-teal transition-colors" title="GitHub">
-                            <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
-                        <a href="https://linkedin.com/in/john-keneth-diola-2ab10737b/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-teal transition-colors" title="LinkedIn">
-                            <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clip-rule="evenodd"></path>
-                            </svg>
-                        </a>
-                    </div>
+    <footer class="py-12 px-4 bg-dark-card border-t border-dark-border">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="font-space font-bold text-xl mb-4 md:mb-0">
+                    <span class="text-white">ke</span><span class="text-teal">ki</span>
                 </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-base md:text-lg font-semibold text-teal mb-3 md:mb-4">Quick Links</h4>
-                    <ul class="space-y-1 md:space-y-2">
-                        <li><a href="#about" class="text-gray-400 hover:text-teal transition-colors text-sm md:text-base">About</a></li>
-                        <li><a href="#education" class="text-gray-400 hover:text-teal transition-colors text-sm md:text-base">Education</a></li>
-                        <li><a href="#experience" class="text-gray-400 hover:text-teal transition-colors text-sm md:text-base">Experience</a></li>
-                        <li><a href="#skills" class="text-gray-400 hover:text-teal transition-colors text-sm md:text-base">Skills</a></li>
-                        <li><a href="#projects" class="text-gray-400 hover:text-teal transition-colors text-sm md:text-base">Projects</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-teal transition-colors text-sm md:text-base">Contact</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact Info -->
-                <div>
-                    <h4 class="text-base md:text-lg font-semibold text-teal mb-3 md:mb-4">Contact Info</h4>
-                    <div class="space-y-1 md:space-y-2 text-gray-400 text-xs md:text-sm">
-                        <p class="break-all">📧 johnkeneth.diola@carsu.edu.ph</p>
-                        <p>📱 +63 981 234 1572</p>
-                        <p>📍 Purok 4 Los Arcos<br>Prosperidad, Agusan del Sur</p>
-                        <button onclick="downloadResume()" class="mt-2 md:mt-3 text-teal hover:text-teal/80 transition-colors text-xs md:text-sm">
-                            📄 Download Resume
-                        </button>
-                    </div>
+                
+                <div class="flex gap-4">
+                    <a href="https://github.com/keki0713" target="_blank" rel="noopener noreferrer" class="hover:text-teal transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/john-keneth-diola-2ab10737b/" target="_blank" rel="noopener noreferrer" class="hover:text-teal transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:johnkeneth.diola@carsu.edu.ph" class="hover:text-teal transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </a>
                 </div>
             </div>
-
-            <!-- Bottom Bar -->
-            <div class="border-t border-gray-800 mt-6 md:mt-8 pt-6 md:pt-8 flex flex-col lg:flex-row justify-between items-center gap-4">
-                <p class="text-gray-400 text-xs md:text-sm text-center lg:text-left">
-                    © 2025 John Keneth L. Diola. All rights reserved.
+            
+            <div class="text-center text-gray-400 text-sm">
+                <p class="mb-2">© 2025 John Keneth Diola. All rights reserved.</p>
+                <p class="text-xs">
+                    This portfolio complies with RA 10173 (Data Privacy Act of 2012). 
+                    Personal information is collected and processed in accordance with applicable privacy laws.
                 </p>
-                <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
-                    <span class="text-gray-400 text-xs md:text-sm">Built with</span>
-                    <div class="flex flex-wrap justify-center gap-1 md:gap-2">
-                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">HTML</span>
-                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">Tailwind CSS</span>
-                        <span class="bg-teal/20 text-teal px-2 py-1 rounded text-xs">JavaScript</span>
-                    </div>
-                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Project Modals -->
-    <div id="project-modal" class="fixed inset-0 bg-black/80 modal hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div class="p-6 border-b border-gray-700 flex justify-between items-center">
-                <h3 id="modal-title" class="text-2xl font-bold text-teal"></h3>
-                <button onclick="closeProjectModal()" class="text-gray-400 hover:text-white">
+    <!-- Quick Message Modal -->
+    <div id="quick-message-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-dark-card rounded-lg border border-dark-border max-w-md w-full p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-space text-lg font-semibold">Quick Message</h3>
+                <button onclick="closeQuickMessage()" class="text-gray-400 hover:text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
             </div>
-            <div id="modal-content" class="p-6">
-                <!-- Content will be populated by JavaScript -->
-            </div>
+            
+            <form onsubmit="sendQuickMessage(event)">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Your Name</label>
+                        <input type="text" id="sender-name" required class="w-full bg-dark-bg border border-dark-border rounded-lg px-3 py-2 focus:border-teal focus:outline-none">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Your Email</label>
+                        <input type="email" id="sender-email" required class="w-full bg-dark-bg border border-dark-border rounded-lg px-3 py-2 focus:border-teal focus:outline-none">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Message</label>
+                        <textarea id="message-content" required rows="4" class="w-full bg-dark-bg border border-dark-border rounded-lg px-3 py-2 focus:border-teal focus:outline-none resize-none"></textarea>
+                    </div>
+                </div>
+                
+                <div class="flex gap-3 mt-6">
+                    <button type="submit" class="bg-teal hover:bg-teal-dark px-4 py-2 rounded-lg font-medium transition-colors flex-1">
+                        Send Message
+                    </button>
+                    <button type="button" onclick="closeQuickMessage()" class="border border-dark-border hover:border-teal px-4 py-2 rounded-lg font-medium transition-colors">
+                        Cancel
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
     <script>
         // Mobile menu toggle
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
 
-        // Scroll progress indicator
-        window.addEventListener('scroll', function() {
-            const scrollProgress = document.getElementById('scroll-progress');
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            scrollProgress.style.width = scrollPercent + '%';
-        });
-
-        // Smooth scroll for navigation links
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -732,258 +1087,85 @@
             });
         });
 
-        // Skills animation on scroll
-        const observerOptions = {
-            threshold: 0.5,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const skillsObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const progressBars = entry.target.querySelectorAll('.progress-bar');
-                    progressBars.forEach((bar, index) => {
+        // Animate skill progress bars when they come into view
+        function animateSkills() {
+            const skillItems = document.querySelectorAll('.skill-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const skillLevel = entry.target.dataset.skill;
+                        const progressBar = entry.target.querySelector('.progress-bar');
                         setTimeout(() => {
-                            const width = bar.getAttribute('data-width');
-                            bar.style.width = width + '%';
-                        }, index * 200);
-                    });
-                }
-            });
-        }, observerOptions);
+                            progressBar.style.width = skillLevel + '%';
+                        }, 200);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
 
-        const skillsSection = document.getElementById('skills');
-        if (skillsSection) {
-            skillsObserver.observe(skillsSection);
+            skillItems.forEach(item => observer.observe(item));
         }
 
-        // Toast notification
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toast-message');
-            toastMessage.textContent = message;
-            toast.classList.add('show');
+        // Fade in animation for sections
+        function setupFadeInAnimation() {
+            const elements = document.querySelectorAll('section > div');
+            elements.forEach(el => el.classList.add('fade-in'));
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            elements.forEach(el => observer.observe(el));
+        }
+
+        // Quick message modal functions
+        function openQuickMessage() {
+            document.getElementById('quick-message-modal').classList.remove('hidden');
+            document.getElementById('quick-message-modal').classList.add('flex');
+        }
+
+        function closeQuickMessage() {
+            document.getElementById('quick-message-modal').classList.add('hidden');
+            document.getElementById('quick-message-modal').classList.remove('flex');
+        }
+
+        function sendQuickMessage(event) {
+            event.preventDefault();
             
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            const name = document.getElementById('sender-name').value;
+            const email = document.getElementById('sender-email').value;
+            const message = document.getElementById('message-content').value;
+            
+            const subject = `Portfolio Contact from ${name}`;
+            const body = `Hello John Keneth,\n\n${message}\n\nBest regards,\n${name}\n${email}`;
+            
+            const mailtoLink = `mailto:johnkeneth.diola@carsu.edu.ph?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            window.open(mailtoLink, '_blank');
+            closeQuickMessage();
+            
+            // Reset form
+            document.getElementById('sender-name').value = '';
+            document.getElementById('sender-email').value = '';
+            document.getElementById('message-content').value = '';
         }
 
-        // Resume download function
-        function downloadResume() {
-            // Simulate resume download
-            showToast('Resume download initiated! Opening Google Drive...');
-            // In a real implementation, this would open the actual resume link
-            window.open('https://drive.google.com/file/d/1RIXHq9LLxvBiOCc5kUqi9WS6UpSHGhxY/view?usp=sharing', '_blank', 'noopener,noreferrer');
-        }
-
-        // Scroll to contact function
-        function scrollToContact() {
-            document.getElementById('contact').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-
-        // Project modal functions
-        const projectData = {
-            project1: {
-                title: 'Python Data Science Project',
-                duration: '3 months',
-                role: 'Data Analyst & Developer',
-                description: 'Comprehensive data analysis project focusing on statistical analysis and machine learning implementation using Python ecosystem.',
-                challenges: [
-                    'Large dataset processing and optimization',
-                    'Complex statistical modeling requirements',
-                    'Data visualization for non-technical stakeholders'
-                ],
-                outcomes: [
-                    'Improved data processing efficiency by 40%',
-                    'Created automated reporting system',
-                    'Delivered actionable insights for decision making'
-                ],
-                technologies: ['Python', 'Pandas', 'NumPy', 'Matplotlib', 'Scikit-learn', 'Jupyter'],
-                github: 'https://github.com/johnkeneth/data-science-project',
-                demo: 'https://johnkeneth-datascience.netlify.app'
-            },
-            project2: {
-                title: 'Module Development Assignment',
-                duration: '2 months',
-                role: 'Software Developer',
-                description: 'Custom software module development with emphasis on clean architecture, maintainable code, and comprehensive testing.',
-                challenges: [
-                    'Complex business logic implementation',
-                    'Integration with existing systems',
-                    'Performance optimization requirements'
-                ],
-                outcomes: [
-                    'Delivered fully functional module on schedule',
-                    'Achieved 95% test coverage',
-                    'Reduced system response time by 25%'
-                ],
-                technologies: ['JavaScript', 'Node.js', 'Express', 'Jest', 'MongoDB', 'Docker'],
-                github: 'https://github.com/johnkeneth/module-development',
-                demo: 'https://johnkeneth-module.herokuapp.com'
-            },
-            project3: {
-                title: 'Academic Capstone Project',
-                duration: '6 months',
-                role: 'Full-Stack Developer & Project Lead',
-                description: 'Comprehensive full-stack application demonstrating end-to-end development skills, system integration, and project management.',
-                challenges: [
-                    'Full-stack architecture design',
-                    'Database optimization and scaling',
-                    'User experience and interface design'
-                ],
-                outcomes: [
-                    'Successfully defended capstone with highest marks',
-                    'Implemented scalable architecture',
-                    'Created comprehensive documentation'
-                ],
-                technologies: ['React', 'Node.js', 'PostgreSQL', 'Express', 'Tailwind CSS', 'AWS'],
-                github: 'https://github.com/johnkeneth/capstone-project',
-                demo: 'https://johnkeneth-capstone.vercel.app'
-            }
-        };
-
-        function openProjectModal(projectId) {
-            const modal = document.getElementById('project-modal');
-            const modalTitle = document.getElementById('modal-title');
-            const modalContent = document.getElementById('modal-content');
-            const project = projectData[projectId];
-
-            modalTitle.textContent = project.title;
-            modalContent.innerHTML = `
-                <div class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-4 text-sm">
-                        <div><strong class="text-teal">Duration:</strong> ${project.duration}</div>
-                        <div><strong class="text-teal">Role:</strong> ${project.role}</div>
-                    </div>
-                    
-                    <div>
-                        <h4 class="text-lg font-semibold text-teal mb-2">Project Overview</h4>
-                        <p class="text-gray-300">${project.description}</p>
-                    </div>
-
-                    <div>
-                        <h4 class="text-lg font-semibold text-teal mb-2">Key Challenges</h4>
-                        <ul class="space-y-1">
-                            ${project.challenges.map(challenge => `
-                                <li class="flex items-start space-x-2">
-                                    <span class="text-teal mt-1">•</span>
-                                    <span class="text-gray-300">${challenge}</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 class="text-lg font-semibold text-teal mb-2">Outcomes & Results</h4>
-                        <ul class="space-y-1">
-                            ${project.outcomes.map(outcome => `
-                                <li class="flex items-start space-x-2">
-                                    <span class="text-teal mt-1">✓</span>
-                                    <span class="text-gray-300">${outcome}</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 class="text-lg font-semibold text-teal mb-2">Technologies Used</h4>
-                        <div class="flex flex-wrap gap-2">
-                            ${project.technologies.map(tech => `
-                                <span class="bg-teal/20 text-teal px-2 py-1 rounded text-sm">${tech}</span>
-                            `).join('')}
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-gray-700">
-                        <a href="${project.github}" target="_blank" rel="noopener noreferrer" 
-                           class="flex-1 bg-gray-700 hover:bg-gray-600 text-center py-2 px-4 rounded-lg transition-colors">
-                            View on GitHub
-                        </a>
-                        <a href="${project.demo}" target="_blank" rel="noopener noreferrer" 
-                           class="flex-1 bg-teal hover:bg-teal/80 text-center py-2 px-4 rounded-lg transition-colors">
-                            Live Demo
-                        </a>
-                    </div>
-                </div>
-            `;
-
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeProjectModal() {
-            const modal = document.getElementById('project-modal');
-            modal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            animateSkills();
+            setupFadeInAnimation();
+        });
 
         // Close modal when clicking outside
-        document.getElementById('project-modal').addEventListener('click', function(e) {
+        document.getElementById('quick-message-modal').addEventListener('click', function(e) {
             if (e.target === this) {
-                closeProjectModal();
+                closeQuickMessage();
             }
         });
-
-        // Contact form handling
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('contact-name').value;
-            const email = document.getElementById('contact-email').value;
-            const inquiryType = document.getElementById('inquiry-type').value;
-            const subject = document.getElementById('contact-subject').value;
-            const message = document.getElementById('contact-message').value;
-
-            // Create email content
-            const emailSubject = `[${inquiryType.toUpperCase()}] ${subject}`;
-            const emailBody = `Hello John,
-
-My name is ${name} and I'm reaching out regarding a ${inquiryType} inquiry.
-
-${message}
-
-Best regards,
-${name}
-${email}
-
----
-This message was sent through your portfolio website.`;
-
-            // Create mailto link
-            const mailtoLink = `mailto:johnkeneth.diola@carsu.edu.ph?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-            
-            // Show success message
-            document.getElementById('form-success').classList.remove('hidden');
-            
-            // Open email client
-            setTimeout(() => {
-                window.location.href = mailtoLink;
-            }, 1000);
-
-            // Reset form after a delay
-            setTimeout(() => {
-                this.reset();
-                document.getElementById('form-success').classList.add('hidden');
-            }, 3000);
-        });
-
-        // Add scroll animations for sections
-        const animateOnScroll = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        // Observe all sections for animation
-        document.querySelectorAll('section').forEach(section => {
-            animateOnScroll.observe(section);
-        });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98271bad168afee3',t:'MTc1ODQzMTk3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'982f23c97135fedd',t:'MTc1ODUxNjE5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
